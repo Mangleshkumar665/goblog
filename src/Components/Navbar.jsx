@@ -1,7 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import { Auth, signOut } from 'firebase/auth'
+import { auth } from '../Config/firebase'
 const Navbar = () => {
+  const logOut = ()=>{
+    signOut(auth);
+  }
+
+
   return (
+    
     <>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
@@ -31,7 +39,14 @@ const Navbar = () => {
                   Login
                 </Link>
               </li>
-              
+              <li className="nav-item">
+                <Link className="nav-link active" aria-current="page"  to="/create-post">
+                  Create-Post
+                </Link>
+              </li>
+              <li className="nav-item">
+                <button onClick={logOut}> Logout </button>
+              </li>
 
             </ul>
           </div>
