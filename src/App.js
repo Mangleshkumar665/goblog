@@ -7,9 +7,9 @@ import {
   Link
 } from "react-router-dom";
 import Login from './Pages/Login';
-import Home from './Pages/Home';
 import Navbar from './Components/Navbar';
 import CreatePost from './Pages/create-post/CreatePost';
+import Home from './Pages/Home/Home';
 
 
 function App() {

@@ -2,6 +2,10 @@ import React from "react";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup"; 
+import {collection ,addDoc} from "firebase/firestore"
+import {db,auth} from "../../Config/firebase"; 
+import {useAuthState} from 'react-firebase-hooks/auth'
+
 
 
 const CreateForm = () => {
@@ -16,11 +20,21 @@ const CreateForm = () => {
         resolver: yupResolver(schema)
     });
 
-    const onCreatePost = (data)=>{
-        console.log("submitted");
-        console.log(data);
+    const postsRef = collection(db,"posts");
 
-    }
+    const [user] = useAuthState(auth);
+
+    
+    const onCreatePost = async(data)=>{
+        
+        await addDoc(postsRef,{
+            description : data.description,
+            title : data.title,
+            userId : user?.uid,
+            username : user?.displayName
+        });
+    };
+
 
 
   return (
