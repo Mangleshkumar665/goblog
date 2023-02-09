@@ -14,16 +14,20 @@ import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
 
 const Post = (props) => {
+
+  const [totalComments,setTotalComments] =useState(0); 
+
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState([]);
 
   const likesRef = collection(db, "likes");
   const likesDocs = query(likesRef, where("postId", "==", props.post.id));
 
+
   const getLikes = async () => {
     const data = await getDocs(likesDocs);
-
     setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
+    
   };
 
   useEffect(() => {
@@ -117,15 +121,17 @@ const Post = (props) => {
               )}
               {/* like button logic -- ends --  */}
             </div>
-            <Comments post ={props.post} />
+            <Comments post ={props.post} setTotalComments={ ()=> setTotalComments()} />
 
           </div>
         </div>
 
         <div className="post-stats d-flex">
           <div className="likes-stats">{likes.length} Likes</div>
-          <div className="comments-stats">{0} Comments</div>
+          <div className="comments-stats">{totalComments} Comments</div>
+        {console.log(totalComments)}
         </div>
+
       </div>
     </>
   );

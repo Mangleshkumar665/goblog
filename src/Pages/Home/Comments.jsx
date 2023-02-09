@@ -24,38 +24,63 @@ const Comments = (props) => {
   const commentsRef = collection(db, "comments");
   const [user] = useAuthState(auth);
 
-  const onAddComment = async (data) => {
-    await addDoc(commentsRef, {
-      userId: user?.uid,
-      postId: props.post.id,
-      comment: data.comment,
-    });
+  const onCreateComment = async (data) => {
+    try {
+        await addDoc(commentsRef, {
+            userId: user?.uid,
+            postId: props.post.id,
+            comment: data.comment,
+          });
+      // optimistically rendered comment
+      if(user){
+        const data = await getDocs(commentDocs);
+
+      setCommentsArray(
+        data.docs.map((doc) => ({
+          userId: doc.data().userId,
+          comment: doc.data().comment,
+        }))
+      );
+      }
+     
+    } catch (err) {
+      console.log(err);
+    }
   };
 
+  // B - display Comments here----
 
-// display Comments here---- 
+  //  contains the list of the Comments a particular post has..
+  const [commentsArray, setCommentsArray] = useState([]);
 
-//   //  contains the list of the Comments a particular post has..
-//   const [commentsArray, setCommentsArray] = useState([]);
+  // required to query the comments
 
-//   // required to query the comments
+  // fetched the elements based on query
+  const commentDocs = query(commentsRef, where("postId", "==", props.post.id));
 
-//   // fetched the elements based on query
-//   const commentDocs = query(commentsRef, where("postId", "==", props.post.id));
+  //  now we will get the elements from the comments docs--
+  const showComments = async () => {
+    try {
+      const data = await getDocs(commentDocs);
 
-//   //  now we will get the elements from the comments docs--
-//   const getComments = async () => {
-//     const data = await getDocs(commentDocs);
-//     console.log(data.docs, "data here");
+      setCommentsArray(
+        data.docs.map((doc) => ({
+          userId: doc.data().userId,
+          comment: doc.data().comment,
+        }))
+      );
 
-//     // setCommentsArray( )
-//   };
+      // console.log(data.docs.map((doc) => ({ userId: doc.data().userId,comment : doc.data().comment })))
+      props.setTotalComments(() => commentsArray.length);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-//   useEffect(() => {
-//     // getComments();
-//   }, []);
-// display Comments here ----ends---- 
-
+  useEffect(() => {
+    showComments();
+  }, []);
+  // display Comments here ----ends----
 
   return (
     <div>
@@ -65,33 +90,32 @@ const Comments = (props) => {
             className=" accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne"
+            data-bs-target={`#flush-collapse${props.post.id}`}
             aria-expanded="false"
-            aria-controls="flush-collapseOne 
-                  post-Btns"
+            aria-controls={`flush-collapse${props.post.id} 
+                  post-Btns`}
           >
             <i className="fa-regular fa-comment"></i>
           </button>
 
           <div
-            id="flush-collapseOne"
+            id={`flush-collapse${props.post.id}`}
             className="accordion-collapse collapse "
-            aria-labelledby="flush-headingOne"
+            aria-labelledby={`flush-heading${props.post.id}`}
             data-bs-parent="#accordionFlushExample"
           >
             <div className="accordion-body bdr">
               <div className="add-comment">
-                <form onSubmit={handleSubmit(onAddComment)}>
+                <form onSubmit={handleSubmit(onCreateComment)}>
                   <input
                     className="form-control"
                     type="text"
                     placeholder="comment here..."
-                    
                     {...register("comment")}
                   />
 
                   <div className="">
-                    <input type="submit"  value="Post" /> 
+                    <input type="submit" value="Post" />
                   </div>
                 </form>
               </div>
@@ -99,10 +123,15 @@ const Comments = (props) => {
                 Other's Comments
                 <div className="card" style={{ width: "18rem" }}>
                   <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Nice </li>
-                    <li className="list-group-item">great</li>
-                    <li className="list-group-item">nicely explain </li>
+                    {
+                      // commentsArray.forEach(comment => {
+                      //
+                      // })
 
+                      commentsArray?.map((element) => (
+                        <li className="list-group-item">{element.comment} </li>
+                      ))
+                    }
                   </ul>
                 </div>
               </div>
