@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar justify-content-center navbar-expand-lg bg-light container-fluid col sticky-top ">
+      <nav className="navbar justify-content-center navbar-expand-lg bg-light container-fluid col sticky-top">
         <div className="nav-item col-7 d-flex align-items-center justify-content-center ">
           <Link className="navbar-brand" to="/">
             Go Blogs

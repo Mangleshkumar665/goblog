@@ -5,7 +5,9 @@ const CreatePost = () => {
   return (
     <>
       create post 
+      <div>
       <CreateForm />
+      </div>
     </>
   )
 }

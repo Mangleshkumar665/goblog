@@ -39,20 +39,20 @@ const Home = () => {
        
       
       <MainScreen />
-      <h1> Posts- </h1>
       
-
+ 
 
 
 
       {/* fetching post here  */}
-      <div>
+      <div className='all-posts'>
+      <div className=' container    '>
         {
           postsList?.map((post)=> <Post post={post} /> )
         }
 
       </div>
-
+      </div>
 
     </>
   )

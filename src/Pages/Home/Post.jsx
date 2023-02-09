@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
+import Comments from "./Comments";
 
 const Post = (props) => {
   const [user] = useAuthState(auth);
@@ -72,50 +73,61 @@ const Post = (props) => {
 
       const likeToDelete = doc(db, "likes", likeToDeleteData.docs[0].id);
       // finaly  found the doc based on the query
-      const docSnap = await getDoc(likeToDelete)
+      const docSnap = await getDoc(likeToDelete);
 
       // console.log(docSnap.data() ,likes)
 
       //  adding the optimistic rendering here in order to quickly show changes to the like or dislike button .
-      
+
       // console.log(docSnap.data() ,likes)
-      
 
       if (user) {
-        setLikes((prev)=> prev?.filter((like)=> like.userId !== docSnap.data().userId));
+        setLikes((prev) =>
+          prev?.filter((like) => like.userId !== docSnap.data().userId)
+        );
       }
-      // a/c this code this will filter out the like array element whose userId is same as the one which is going to get deleted 
-      
-      
+      // a/c this code this will filter out the like array element whose userId is same as the one which is going to get deleted
+
       await deleteDoc(likeToDelete);
-
-
-      
-
-
     } catch (err) {
       console.log(err);
     }
-  }
-    const hasCurrentUserLiked = likes?.find(
-      (like) => like.userId === user?.uid
-    );
+  };
+  const hasCurrentUserLiked = likes?.find((like) => like.userId === user?.uid);
 
+  return (
+    <>
+      <div className="card post-content" style={{ width: "40vw" }}>
+        <img src="/" className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">{props.post.title}</h5>
+          <p className="card-text">{props.post.description}</p>
 
-    return (
-      <div className="bdr container my-3">
-        {/* {console.log(user.uid)} */}
-        <h1 className="heading"> title {props.post.title} </h1>
-        <p className="description "> description{props.post.description} </p>
-        <div className="user-name">posted by-@{props.post.username}</div>
-        {hasCurrentUserLiked ? (
-          <button onClick={removeLike}>dislike </button>
-        ) : (
-          <button onClick={addLike}>Like </button>
-        )}
-        <p>{likes.length}</p>
+          {/* like button logic  */}
+          <div className="post-buttons d-flex ">
+            <div className="">
+              {hasCurrentUserLiked ? (
+                <button onClick={removeLike}>
+                  <i className="fa-solid fa-heart"></i>{" "}
+                </button>
+              ) : (
+                <button onClick={addLike} className="post-Btns">
+                  <i className="fa-regular fa-heart"></i>
+                </button>
+              )}
+              {/* like button logic -- ends --  */}
+            </div>
+            <Comments post ={props.post} />
+
+          </div>
+        </div>
+
+        <div className="post-stats d-flex">
+          <div className="likes-stats">{likes.length} Likes</div>
+          <div className="comments-stats">{0} Comments</div>
+        </div>
       </div>
-    );
-  
+    </>
+  );
 };
 export default Post;
