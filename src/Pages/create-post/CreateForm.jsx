@@ -26,7 +26,6 @@ const CreateForm = () => {
 
     
     const onCreatePost = async(data)=>{
-        
         await addDoc(postsRef,{
             description : data.description,
             title : data.title,

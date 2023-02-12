@@ -12,10 +12,10 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
+import tempBg from "../../images/posts.jpg";
 
 const Post = (props) => {
-
-  const [totalComments,setTotalComments] =useState(0); 
+  const [totalComments, setTotalComments] = useState(0);
 
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState([]);
@@ -23,11 +23,9 @@ const Post = (props) => {
   const likesRef = collection(db, "likes");
   const likesDocs = query(likesRef, where("postId", "==", props.post.id));
 
-
   const getLikes = async () => {
     const data = await getDocs(likesDocs);
     setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
-    
   };
 
   useEffect(() => {
@@ -100,9 +98,11 @@ const Post = (props) => {
   const hasCurrentUserLiked = likes?.find((like) => like.userId === user?.uid);
 
   return (
+    
     <>
-      <div className="card post-content" style={{ width: "40vw" }}>
-        <img src="/" className="card-img-top" alt="..." />
+      <div className="card posts-main " >
+        <h5 className="card-header">{props.post.username}</h5>
+        <img src={tempBg} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{props.post.title}</h5>
           <p className="card-text">{props.post.description}</p>
@@ -110,28 +110,31 @@ const Post = (props) => {
           {/* like button logic  */}
           <div className="post-buttons d-flex ">
             <div className="">
+              
               {hasCurrentUserLiked ? (
                 <button onClick={removeLike}>
-                  <i className="fa-solid fa-heart"></i>{" "}
+                  <i className="fa-solid fa-heart fa-xl"></i>{" "}
                 </button>
               ) : (
                 <button onClick={addLike} className="post-Btns">
-                  <i className="fa-regular fa-heart"></i>
+                  <i className="fa-regular fa-heart fa-xl"></i>
                 </button>
               )}
+
               {/* like button logic -- ends --  */}
             </div>
-            <Comments post ={props.post} setTotalComments={ ()=> setTotalComments()} />
-
+            <Comments
+              post={props.post}
+              setTotalComments={() => setTotalComments()}
+            />
           </div>
         </div>
 
         <div className="post-stats d-flex">
           <div className="likes-stats">{likes.length} Likes</div>
           <div className="comments-stats">{totalComments} Comments</div>
-        {console.log(totalComments)}
+          {/* {console.log(totalComments)} */}
         </div>
-
       </div>
     </>
   );

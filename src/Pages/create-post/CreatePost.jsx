@@ -1,11 +1,14 @@
 import React from 'react'
 import CreateForm from './CreateForm';
+import ProfilePage from './ProfilePage';
 
 const CreatePost = () => {
   return (
     <>
-      create post 
-      <div>
+      <ProfilePage />
+
+      <div className='temp'>
+      
       <CreateForm />
       </div>
     </>

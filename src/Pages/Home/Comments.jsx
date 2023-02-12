@@ -32,16 +32,16 @@ const Comments = (props) => {
             comment: data.comment,
           });
       // optimistically rendered comment
-      if(user){
-        const data = await getDocs(commentDocs);
+      // if(user){
+      //   const data = await getDocs(commentDocs);
 
-      setCommentsArray(
-        data.docs.map((doc) => ({
-          userId: doc.data().userId,
-          comment: doc.data().comment,
-        }))
-      );
-      }
+      // setCommentsArray(
+      //   data.docs.map((doc) => ({
+      //     userId: doc.data().userId,
+      //     comment: doc.data().comment,
+      //   }))
+      // );
+      // }
      
     } catch (err) {
       console.log(err);
@@ -84,8 +84,8 @@ const Comments = (props) => {
 
   return (
     <div>
-      <div className="comment-button ">
-        <div className="accordion-item">
+      <div className="comment-button  ">
+        <div className="accordion-item ">
           <button
             className=" accordion-button collapsed"
             type="button"
@@ -95,16 +95,16 @@ const Comments = (props) => {
             aria-controls={`flush-collapse${props.post.id} 
                   post-Btns`}
           >
-            <i className="fa-regular fa-comment"></i>
+            <i className="fa-regular fa-comment fa-xl"></i>
           </button>
 
           <div
             id={`flush-collapse${props.post.id}`}
-            className="accordion-collapse collapse "
+            className="accordion-collapse collapse temp  comment-section "
             aria-labelledby={`flush-heading${props.post.id}`}
-            data-bs-parent="#accordionFlushExample"
+            data-bs-parent="#accordionFlushExample" 
           >
-            <div className="accordion-body bdr">
+            <div className="accordion-body ">
               <div className="add-comment">
                 <form onSubmit={handleSubmit(onCreateComment)}>
                   <input
@@ -119,8 +119,9 @@ const Comments = (props) => {
                   </div>
                 </form>
               </div>
-              <div className="show-comments">
-                Other's Comments
+              <div className="show-comments ">
+                Comments
+                <hr />
                 <div className="card" style={{ width: "18rem" }}>
                   <ul className="list-group list-group-flush">
                     {
