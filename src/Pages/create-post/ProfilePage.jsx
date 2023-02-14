@@ -1,26 +1,40 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../Config/firebase";
 import backgroundImages from "../../images/background.jpg";
 import profileThumb from "../../images/profileThumb.jpg";
+import UserPosts from "./UserPosts";
 
 const ProfilePage = () => {
+  
+  const [user] = useAuthState(auth);
+
+
+
+
   return (
     <div className="">
-      <div className="profile-bgDiv">
+      <div className="user-image">
         <img
           src={backgroundImages}
           className="img-fluid profile-bg "
           alt="backgroundimage"
         />
       </div>
-      <div className="profile-pictureDiv">
-        <img
-          src={profileThumb}
-          className="img-fluid profile-picture "
-          alt="backgroundimage"
-        />
+
+      <div className="about-imgLayer" data-aos="fade-right">
+        <img className=" about-img" src={profileThumb} alt="profilepic" />
+        <div className="user-details  d-flex justify-content-center align-items-center flex-column">
+          <h2>
+            {user.displayName} </h2>
+            
+            <h3>{user.email}</h3>
+        </div>
       </div>
-      
-      Profile Page
+
+      <div className="user-post ">
+        <UserPosts />
+      </div>
     </div>
   );
 };

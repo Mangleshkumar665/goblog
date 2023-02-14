@@ -37,8 +37,8 @@ const CreateForm = () => {
 
 
   return (
-    <form className="border" onSubmit={handleSubmit(onCreatePost)}>
-      <div className="mb-3">
+    <form className="contianer mx-5  " onSubmit={handleSubmit(onCreatePost)}>
+      <div className="mb-3 contact-card">
         <label className="form-label">Title</label>
         <input
           type="text"
@@ -50,7 +50,7 @@ const CreateForm = () => {
 
       <div className="mb-3">
         <label className="form-label">Description</label>
-        <input
+        <textarea
           type="text"
           className="form-control"
           id="description"

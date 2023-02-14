@@ -32,16 +32,16 @@ const Comments = (props) => {
             comment: data.comment,
           });
       // optimistically rendered comment
-      // if(user){
-      //   const data = await getDocs(commentDocs);
+      if(user){
+        const data = await getDocs(commentDocs);
 
-      // setCommentsArray(
-      //   data.docs.map((doc) => ({
-      //     userId: doc.data().userId,
-      //     comment: doc.data().comment,
-      //   }))
-      // );
-      // }
+      setCommentsArray(
+        data.docs.map((doc) => ({
+          userId: doc.data().userId,
+          comment: doc.data().comment,
+        }))
+      );
+      }
      
     } catch (err) {
       console.log(err);

@@ -8,13 +8,19 @@ import {
   doc,
   getDoc,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,createContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
 import tempBg from "../../images/posts.jpg";
+import UserPosts from "../create-post/UserPosts";
+import { Link } from "react-router-dom";
+
+export const PostProvider = createContext();
+
 
 const Post = (props) => {
+
   const [totalComments, setTotalComments] = useState(0);
 
   const [user] = useAuthState(auth);
@@ -39,7 +45,6 @@ const Post = (props) => {
         userId: user?.uid,
       });
 
-      //  adding the optimistic rendering here in order to quickly show changes to the like or dislike button .
 
       if (user) {
         setLikes((prev) =>
@@ -50,10 +55,8 @@ const Post = (props) => {
       console.log(err);
     }
 
-    // if prev data exisit then add a userID with user.uid in the list ,justing changing the likes frontend prior to the  backend .. or if prev data doesnt exist then just simply create a array of  only single liked userId  and update the setLikes with it .
   };
 
-  // removal of likes from the Posts done by a specific user ---------------------------------------------------------------------------------------
 
   const removeLike = async (data) => {
     try {
@@ -62,33 +65,22 @@ const Post = (props) => {
         where("userId", "==", user?.uid),
         where("postId", "==", props.post.id)
       );
-      // will return a object based on the query
-      // console.log(likeToDeleteQuery);
+
 
       const likeToDeleteData = await getDocs(likeToDeleteQuery);
-      // returns list of all data based on the query .
-      // console.log(likeToDeleteData, "");
 
-      // for delete docs we need to pass a doc() as arg to the deleteDoc fxn
-
-      // creating  doc() in  likeToDelete var but we require the specific  record  form the db so for that specific record create a query such that " postId is same for the post which we click and userId is also same  as the current user st no other user can remove like of other user => likeToDeleteQuery"
 
       const likeToDelete = doc(db, "likes", likeToDeleteData.docs[0].id);
-      // finaly  found the doc based on the query
+
       const docSnap = await getDoc(likeToDelete);
 
-      // console.log(docSnap.data() ,likes)
-
-      //  adding the optimistic rendering here in order to quickly show changes to the like or dislike button .
-
-      // console.log(docSnap.data() ,likes)
 
       if (user) {
         setLikes((prev) =>
           prev?.filter((like) => like.userId !== docSnap.data().userId)
         );
       }
-      // a/c this code this will filter out the like array element whose userId is same as the one which is going to get deleted
+
 
       await deleteDoc(likeToDelete);
     } catch (err) {
@@ -101,7 +93,9 @@ const Post = (props) => {
     
     <>
       <div className="card posts-main " >
-        <h5 className="card-header">{props.post.username}</h5>
+        <h5 className="card-header"> <Link className="navbar-brand" to={`/${props.post.userId}`}>
+        {props.post.username}
+          </Link> </h5>
         <img src={tempBg} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{props.post.title}</h5>
@@ -135,6 +129,8 @@ const Post = (props) => {
           <div className="comments-stats">{totalComments} Comments</div>
           {/* {console.log(totalComments)} */}
         </div>
+       
+
       </div>
     </>
   );

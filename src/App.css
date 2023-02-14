@@ -1,9 +1,13 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat&family=Noto+Sans:wght@300;400;600&family=Poppins&display=swap');
+
+
 .bdr {
   border: 2px solid black;
 }
 
 .bdrRed {
-  /* border: 2px solid red; */
+  border: 2px solid red;
 }
 
 .img-bgC {
@@ -82,27 +86,8 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
 
-
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat&family=Noto+Sans:wght@300;400;600&family=Poppins&display=swap');
 
 body {
   margin: 0;
@@ -205,11 +190,6 @@ body {
 
 
 
-.wannaKnow-main {
-  margin: 25px;
-  padding-bottom: 10px;
-  box-shadow: 0 4px 12px rgba(44, 44, 44, 0.5);
-}
 
 .wannaKnowImg {
   margin: 25px;
@@ -283,8 +263,18 @@ body {
   margin-left: 1%;
 }
 
+.user-details{
+position: relative;
+top: 140px
+  
+}
 
 
+
+
+li {
+  list-style : none;
+}
 
 
 
@@ -320,19 +310,34 @@ body {
 
   display: flex;
   flex-direction: row-reverse;
-  padding: 30px;
+  /* padding: 30px; */
   align-items: center;
   justify-content: center;
+  
+
+
 
 }
 
 .about-img {
+  position: absolute;
+  top: 300px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 50%;
-  height: 400px;
-
-  opacity: 0.9;
-  box-shadow: 0 15px 25px rgba(92, 91, 91, 0.5);
+  display: block;
+  box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
+.form-head{
+  position: relative;
+  top: 200px;
+  box-shadow: 0 15px 25px rgba(67, 67, 67, 0.5);
+
+  width: 75vw;
+
+}
+
 
 .about-infoLayer {
   display: flex;
@@ -342,12 +347,6 @@ body {
 }
 
 
-
-.skills-language {
-  /* border: 2px solid blue; */
-  width: 50%;
-
-}
 
 .stats-superChild {
   margin-top: 50px;
@@ -407,6 +406,22 @@ ul {
 }
 
 
+
+.profile-bgDiv{
+  width: 100%;
+  min-height: calc(100px + 15vw);
+}
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
 
   .about-imgLayer {
@@ -418,10 +433,12 @@ ul {
   }
 
   .about-img {
-    border-radius: 50%;
+    border-radius: 25%;
+    position: absolute;
+    top: 370px;
     height: 210px;
-    opacity: 0.9;
     box-shadow: 0 15px 25px rgba(92, 91, 91, 0.5);
+    
   }
 
   .skills-language {
