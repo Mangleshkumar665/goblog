@@ -15,6 +15,7 @@ import ProfilePage from './Pages/create-post/ProfilePage';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './Config/firebase';
 import { useEffect, useState } from 'react';
+import UserPosts from './Pages/create-post/UserPosts';
 
 
 function App() {
@@ -40,10 +41,10 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} ></Route>
           <Route path='/' element={<Home fetchPosts ={fetchPosts} />} ></Route>
-          <Route path='/create-post' element={<CreatePost />} 
+          
+          
+          <Route path={ "/user/:id"} element={<CreatePost />} 
           ></Route>
-          {/* <Route path={`/${user.uid}`} element={<PublicProfiles />} 
-          ></Route> */}
           
 
         </Routes>

@@ -93,7 +93,7 @@ const Post = (props) => {
     
     <>
       <div className="card posts-main " >
-        <h5 className="card-header"> <Link className="navbar-brand" to={`/${props.post.userId}`}>
+        <h5 className="card-header"> <Link className="navbar-brand" to={`/user/${props.post.userId}`}>
         {props.post.username}
           </Link> </h5>
         <img src={tempBg} className="card-img-top" alt="..." />

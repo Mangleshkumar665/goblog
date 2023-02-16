@@ -122,15 +122,16 @@ const Comments = (props) => {
               <div className="show-comments ">
                 Comments
                 <hr />
+                {/* {console.log(commentsArray)} */}
                 <div className="card" style={{ width: "18rem" }}>
                   <ul className="list-group list-group-flush">
                     {
                       // commentsArray.forEach(comment => {
                       //
                       // })
-
+                      
                       commentsArray?.map((element) => (
-                        <li className="list-group-item">{element.comment} </li>
+                        <li key = {element.comment}className="list-group-item">{element.comment} </li>
                       ))
                     }
                   </ul>

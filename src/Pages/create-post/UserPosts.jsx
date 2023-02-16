@@ -9,7 +9,7 @@ const UserPosts = () => {
 
   const [post, setPost] = useState([]);
   const postsRef = collection(db, "posts");
-  const postsDocs = query(postsRef, where("userId", "==", user.uid));
+  const postsDocs = query(postsRef, where("userId", "==", window.location.pathname.slice(6)));
 
 
 
@@ -17,8 +17,7 @@ const UserPosts = () => {
     const data = await getDocs(postsDocs);
 
     setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    
-    
+    // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
   };
 
 useEffect(() => {
@@ -38,7 +37,7 @@ useEffect(() => {
           <li className="" key={post.id}><Post post={post} /></li>
           
         ))}
-
+        {/* {console.log(window.location.pathname.slice(6)) } */}
         </div>
     </div>
   );
