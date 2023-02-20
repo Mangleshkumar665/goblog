@@ -10,7 +10,7 @@ const Login = () => {
   const signInwithGoogle = async ()=>{
     
     const result = await signInWithPopup(auth , provider);
-    console.log(result);
+    // console.log(result);
     navigate("/");
     
   };

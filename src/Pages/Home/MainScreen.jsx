@@ -36,7 +36,7 @@ const MainScreen = () => {
         </div>
       </div>
     </div>
-
+  
     // </div>
   );
 };

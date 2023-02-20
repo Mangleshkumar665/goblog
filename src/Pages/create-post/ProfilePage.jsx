@@ -1,26 +1,35 @@
-import { collection, query, where } from "firebase/firestore";
-import React, { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import backgroundImages from "../../images/background.jpg";
 import profileThumb from "../../images/profileThumb.jpg";
 import UserPosts from "./UserPosts";
 
-const ProfilePage = () => {
-  const [profileDataArray, setProfileDataArray] = useState([])
-
+const ProfilePage = (props) => {
+  
   const [user] = useAuthState(auth);
 
-  const profileRef = collection(db, "posts");
+  const [post, setPost] = useState([]);
+  const postsRef = collection(db, "posts");
+  const postsDocs = query(postsRef, where("userId", "==", window.location.pathname.slice(6)));
 
 
-  const postsDocs = query(profileRef, where("userId", "==", window.location.pathname.slice(6)));
-
-  const getProfileDeatails = ()=>{
-    console.log()
-  }
 
 
+
+  const getPosts = async () => {
+    const data = await getDocs(postsDocs);
+
+    setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
+  };
+
+
+  useEffect(() => {
+    getPosts();
+  }, [])
+  
 
 
 
@@ -39,14 +48,14 @@ const ProfilePage = () => {
         <img className=" about-img" src={profileThumb} alt="profilepic" />
         <div className="user-details  d-flex justify-content-center align-items-center flex-column">
           <h2>
-            {user.displayName} </h2>
+            {post[0]?.username} </h2>
             
-            <h3>{user.email}</h3>
+
         </div>
       </div>
 
       <div className="user-post ">
-        <UserPosts />
+        <UserPosts post = {post}/>
       </div>
     </div>
   );

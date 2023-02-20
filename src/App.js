@@ -13,25 +13,43 @@ import Home from './Pages/Home/Home';
 import PublicProfiles from './Pages/create-post/PublicProfiles';
 import ProfilePage from './Pages/create-post/ProfilePage';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './Config/firebase';
+import { auth, db } from './Config/firebase';
 import { useEffect, useState } from 'react';
 import UserPosts from './Pages/create-post/UserPosts';
+import PostPage from './Pages/PostPage/PostPage';
+import { collection, getDocs } from 'firebase/firestore';
 
 
 function App() {
-  const [user] = useAuthState(auth);
+  
+  const postsRef = collection(db, "posts");
+    // sending post object to the app.js 
+  const [postsList, setPostList] = useState([]);
 
-  const [postUserId, setPostUserId] = useState("")
+  const getPosts = async () => {
+    const data = await getDocs(postsRef);
+    setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // console.log((data.docs.map((doc)=> ({...doc.data(),id :doc.id}))))
 
-
-  const fetchPosts = (post)=>{
-    console.log(post)
-    // setPostUserId(post.userId);
-  }
+  };
 
   useEffect(() => {
-    fetchPosts();
-  }, [])
+    getPosts();
+    // getLikes();
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return (
@@ -40,12 +58,14 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/login' element={<Login />} ></Route>
-          <Route path='/' element={<Home fetchPosts ={fetchPosts} />} ></Route>
+          <Route path='/' element={<Home post = {postsList} />} ></Route>
           
           
           <Route path={ "/user/:id"} element={<CreatePost />} 
           ></Route>
           
+          <Route path={ "/:id"} element={<PostPage post ={postsList} />} 
+          ></Route>
 
         </Routes>
 

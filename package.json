@@ -13,6 +13,7 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.43.0",
+    "react-lorem-ipsum": "^1.4.10",
     "react-router-dom": "^6.8.0",
     "react-scripts": "5.0.1",
     "unsplash-js": "^7.0.15",

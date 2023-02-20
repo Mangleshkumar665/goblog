@@ -20,12 +20,19 @@
   z-index: -1;
 }
 
+.post-background{
+  width: 100vw;
+  height: 80vh;
+
+}
+
 
 .all-posts {
   position: absolute;
   top: 100vh;
   border: 2px solid red;
   width: 100vw;
+  
 }
 
 .comment-section{
@@ -108,7 +115,6 @@ body {
 
 
 .text-hello {
-
   font-family: 'Lato', sans-serif;
 
 }
@@ -119,7 +125,39 @@ body {
 
 }
 
+.post-imgwrapper{
+  /* border: 2px solid red ; */
+  height: 250px;
+  
+}
+.post-img{
+  height: 245px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 15px 25px rgba(92, 91, 91, 0.5);
+  
+}
+.post-title{
+  font-size: 50px;
+}
+.post-profileheader{
+  margin: 10px ;
+}
 
+.post-desc{
+  font-size: 30px;
+}
+
+
+
+.post-heading{
+  position: absolute;
+  top: 0%;
+  width: 100vw;
+  filter: invert(100%);
+
+}
 
 .heading-content {
   display: flex;
@@ -163,7 +201,6 @@ body {
 .post-buttons button{
   all: unset;
   margin-right: 15px;
-  
 }
 
 .commentpost-btn{

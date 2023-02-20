@@ -27,7 +27,7 @@ const Navbar = () => {
             
             <li className="nav-item">
               <Link
-                className="nav-link active"aria-current="page" to={`/user/${user.uid}`} >
+                className="nav-link active"aria-current="page" to={`/user/${user?.uid}`} >
                 Profile
               </Link>
             </li>

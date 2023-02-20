@@ -6,7 +6,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useAuthState } from "react-firebase-hooks/auth";
 const Comments = (props) => {
-  // creating comments
 
   //  creating schema
   const schema = yup.object().shape({
