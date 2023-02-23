@@ -7,12 +7,21 @@ import { db, auth } from "../../Config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { useNavigate } from "react-router-dom";
-// text editor ---
-
-// text editor ended ---
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
+import JoditEditor from "jodit-react";
 
 const CreateForm = () => {
-  
+  // text editor ---
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
+
+  const Config = {
+    placeholder : "Let's Start Writing ...",
+    
+  }
+  // text editor ended ---
+
   const schema = yup.object().shape({
     title: yup.string().required("You need to add a title "),
     description: yup.string().required("You need to add a description "),
@@ -68,18 +77,18 @@ const CreateForm = () => {
         />
       </div>
       <div className="mb-3">
-      <label className="form-label">Blog</label>
-        <textarea
-          type="text"
-          className="form-control"
-          id="description"
-          placeholder="Enter the description post here"
-          rows="10"
-          {...register("blog")}
-        />
+        <label className="form-label">Blog</label>
         
+        <JoditEditor
+          ref={editor}
+          value={content}
+          onChange={newContent =>setContent(newContent)}
+        />
       </div>
       <div>
+        {console.log(content)}
+        <div> {}</div>
+
         <p>
           {errors.title?.message} {errors.description?.message}
         </p>
@@ -92,8 +101,6 @@ const CreateForm = () => {
       <div className="mb-3">
         <input type="submit" value={"Clear" || ""} />
       </div>
-
-      
     </form>
   );
 };

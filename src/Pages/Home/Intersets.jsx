@@ -137,7 +137,7 @@ const Intersets = () => {
                     {interestsArray.map((data) => (
                       <button
                         type="button"
-                        id={data}
+                        key={data}
                         value={data}
                         className="btn btn-secondary "
                         onClick={interestSelecttion}
