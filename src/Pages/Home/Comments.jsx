@@ -41,7 +41,6 @@ const Comments = (props) => {
         }))
       );
       }
-     
     } catch (err) {
       console.log(err);
     }

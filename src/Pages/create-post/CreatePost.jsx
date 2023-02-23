@@ -4,7 +4,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../Config/firebase";
 import CreateForm from "./CreateForm";
 import ProfilePage from "./ProfilePage";
-
 const CreatePost = () => {
   const [user] = useAuthState(auth);
 

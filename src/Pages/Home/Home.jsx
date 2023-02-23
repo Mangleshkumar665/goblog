@@ -15,8 +15,7 @@ const Home = (props) => {
 
   return (
     <>
-      {user?.displayName + " "}
-      Signed in-
+      
       <MainScreen />
       {/* fetching post here  */}
       <div className=" all-posts ">

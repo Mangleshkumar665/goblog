@@ -22,7 +22,7 @@ const ProfilePage = (props) => {
     const data = await getDocs(postsDocs);
 
     setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
+    console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
   };
 
 
@@ -42,10 +42,8 @@ const ProfilePage = (props) => {
           alt="backgroundimage"
         />
       </div>
-    {console.log("chkeing ")}
-
       <div className="about-imgLayer" data-aos="fade-right">
-        <img className=" about-img" src={profileThumb} alt="profilepic" />
+        <img className=" about-img" src={user?.photoURL} alt="profilepic" />
         <div className="user-details  d-flex justify-content-center align-items-center flex-column">
           <h2>
             {post[0]?.username} </h2>

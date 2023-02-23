@@ -13,9 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
 import tempBg from "../../images/posts.jpg";
-import UserPosts from "../create-post/UserPosts";
 import { Link } from "react-router-dom";
-import PostPage from "../PostPage/PostPage";
 
 export const PostProvider = createContext();
 
@@ -24,10 +22,8 @@ const Post = (props) => {
 
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState([]);
-  const [post, setPost] = useState([]);
  
   const likesRef = collection(db, "likes");
-  const postRef = collection(db,"posts")
   const likesDocs = query(likesRef, where("postId", "==", props.post.id));
 
   const getLikes = async () => {

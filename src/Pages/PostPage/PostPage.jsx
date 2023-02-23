@@ -10,7 +10,6 @@ const PostPage = (props) => {
         (element) => element.id === window.location.pathname.slice(1)
       )
     );
-
   };
 
   // console.log(currentPost);
@@ -27,33 +26,31 @@ const PostPage = (props) => {
           className="img-fluid  post-background "
           alt="backgroundimage"
         />
-      </div>
-
-      <div className=" heading-content text-center  post-heading  ">
-        <div className=" display-2 text-hello  ">
-          <h1>{currentPost[0]?.title}</h1>
-        </div>
-        <div className=" display-6 text-caption my-4 ">  
-          {currentPost[0]?.description}
-        </div>
-        
-        <div className=" display-6 text-caption my-4 ">
-          Posted By :   
-          {currentPost[0]?.username}
-        </div>
-
-        <div className=" display-5  d-flex justify-content-center " style={{width : "50vw"}}>
-          <div className=" likes ">
-            Likes :  
+      </div  >
+      <div className= "  d-flex justify-content-center align-items-center col">
+        <div className="  wrapper  text-center  post-heading row  ">
+          <div className="  text-hello display-1   " style={{fontSize
+           : "50px"}}>
+            {currentPost[0]?.title}
           </div>
-          <div className=" comments ">
-            comments : 
+          <div className="  text-caption my-4 " style={{fontSize
+           : "30px"}}>
+            {currentPost[0]?.description}
+          </div>
+
+          <div className=" display-6 text-caption my-4 ">
+            Posted By :{currentPost[0]?.username}
+          </div>
+
+          <div
+            className=" display-5 row    " >
+            <div className=" likes col " style={{fontSize
+           : "2.5rem"}}>Likes :</div>
+            <div className=" comments col " style={{fontSize
+           : "2.5rem"}}>comments :</div>
           </div>
         </div>
-        {console.log(currentPost[0])}
-
       </div>
-
     </div>
   );
 };

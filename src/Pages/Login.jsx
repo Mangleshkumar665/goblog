@@ -1,27 +1,29 @@
-import React from 'react'
-import {auth , provider} from "../Config/firebase";
-import {signInWithPopup} from 'firebase/auth'
-import {useNavigate} from 'react-router-dom'
-
+import React from "react";
+import { auth, provider } from "../Config/firebase";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const signInwithGoogle = async ()=>{
-    
-    const result = await signInWithPopup(auth , provider);
-    // console.log(result);
-    navigate("/");
-    
+  const signInwithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      console.log(result)
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
-      
-      <p> Sign in to google to continue -- </p> 
-      <button onClick={signInwithGoogle}> click here </button>
-
+      <p> Sign in with -- </p>
+      <button onClick={signInwithGoogle} style={{ all: "unset" }}>
+        {" "}
+        <i class="fa-brands fa-google"></i>{" "}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
