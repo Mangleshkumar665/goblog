@@ -18,24 +18,24 @@ import { Link } from "react-router-dom";
 export const PostProvider = createContext();
 
 const Post = (props) => {
+  const { post, bgImages } = props;
   const [totalComments, setTotalComments] = useState(0);
 
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState([]);
- 
+
   const likesRef = collection(db, "likes");
-  const likesDocs = query(likesRef, where("postId", "==", props.post.id));
+  const likesDocs = query(likesRef, where("postId", "==", post.id));
 
   const getLikes = async () => {
     const data = await getDocs(likesDocs);
     setLikes(data.docs.map((doc) => ({ userId: doc.data().userId })));
   };
 
-
   const addLike = async (data) => {
     try {
       await addDoc(likesRef, {
-        postId: props.post.id,
+        postId: post.id,
         userId: user?.uid,
       });
 
@@ -54,7 +54,7 @@ const Post = (props) => {
       const likeToDeleteQuery = query(
         likesRef,
         where("userId", "==", user?.uid),
-        where("postId", "==", props.post.id)
+        where("postId", "==", post.id)
       );
 
       const likeToDeleteData = await getDocs(likeToDeleteQuery);
@@ -75,40 +75,29 @@ const Post = (props) => {
     }
   };
 
-
-
   const hasCurrentUserLiked = likes?.find((like) => like.userId === user?.uid);
 
   useEffect(() => {
     getLikes();
   }, []);
 
-
-
   return (
     <>
       <div className="card posts-main ">
         <h3 className=" post-profileheader d-flex align-items-center">
-          
-          <Link className="navbar-brand" to={`/user/${props.post.userId}`}>
-            {props.post.username}
+          <Link className="navbar-brand" to={`/user/${post.userId}`}>
+            {post.username}
           </Link>
         </h3>
         <div className="post-imgwrapper">
-        <img src={tempBg} className=" post-img" alt="..." />
-
+          <img src={post.background} className=" post-img" alt="..." />
         </div>
         <div className="card-body post-details">
           <h5 className=" post-title">
-            
-            <Link to={`/${props.post.id}` }>
-            {props.post.title}
-            </Link>
-            
-            </h5>
+            <Link to={`/${post.id}`}>{post.title}</Link>
+          </h5>
 
-
-          <p className="post-desc">{props.post.description}</p>
+          <p className="post-desc">{post.description}</p>
 
           {/* like button logic  */}
           <div className="post-buttons row  ">
@@ -127,7 +116,7 @@ const Post = (props) => {
             </div>
             <div className="col-5  ">
               <Comments
-                post={props.post}
+                post={post}
                 setTotalComments={() => setTotalComments()}
               />
             </div>
@@ -139,8 +128,6 @@ const Post = (props) => {
           <div className="comments-stats">{totalComments} Comments</div>
           {/* {console.log(totalComments)} */}
         </div>
-
-        
       </div>
     </>
   );

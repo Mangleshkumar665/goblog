@@ -41,19 +41,7 @@ const MainScreen = () => {
 
 
 // interests end
-  const [bgImages, setBgImages] = useState("");
-  const fetchImages = () => {
-    Axios.get(
-      "https://api.unsplash.com/photos/?client_id=ccZdovOGa9YsUypzzlCoJQYb4YiokLnJRlpY2AnjS4Y"
-    ).then((res) => {
-      // console.log(res.data[0].urls);
-      setBgImages(res.data[4].urls.full);
-    });
-  };
-
-  useEffect(() => {
-    fetchImages();
-  }, []);
+ 
 
   return (
     <div>

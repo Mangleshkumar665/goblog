@@ -22,7 +22,7 @@ const ProfilePage = (props) => {
     const data = await getDocs(postsDocs);
 
     setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
+    // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
   };
 
 

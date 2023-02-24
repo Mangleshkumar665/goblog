@@ -1,0 +1,9 @@
+Firebase Storage Tutuorial - 
+
+npm i uuid - generates random strings 
+
+1- create storage in firebase 
+2 - add some config to the firebase.jsx 
+
+import { getStorage} from 'firebase/storage'
+export const storage = getStorage(app);

@@ -7,25 +7,27 @@ import { db, auth } from "../../Config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import { useNavigate } from "react-router-dom";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import { ClassicEditor } from "@ckeditor/ckeditor5-build-classic";
-import JoditEditor from "jodit-react";
 
-const CreateForm = () => {
+import JoditEditor from "jodit-react";
+import { useMemo } from "react";
+
+const CreateForm = (props) => {
+  const { bgImages } = props;
   // text editor ---
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
-  const Config = {
-    placeholder : "Let's Start Writing ...",
-    
-  }
+  const config = useMemo(
+    () => ({
+      readonly: false,
+    }),
+    []
+  );
   // text editor ended ---
-
   const schema = yup.object().shape({
     title: yup.string().required("You need to add a title "),
     description: yup.string().required("You need to add a description "),
-    blog: yup.string().required("You need to add the content "),
+    blog: yup.string(),
   });
 
   const {
@@ -35,22 +37,27 @@ const CreateForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
   const postsRef = collection(db, "posts");
-
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const onCreatePost = async (data) => {
+    // console.log("chl",data);
+
     await addDoc(postsRef, {
       description: data.description,
       title: data.title,
       userId: user?.uid,
       username: user?.displayName,
-      blog: data.blog,
+      blog: content,
+      background: bgImages,
     });
     await navigate("/");
     await navigate(0);
+
+    
   };
+
+  // addding background image  to the posts -
 
   return (
     <form className="contianer mx-5  m-4" onSubmit={handleSubmit(onCreatePost)}>
@@ -62,9 +69,8 @@ const CreateForm = () => {
           id="title"
           placeholder="Enter the post title here "
           {...register("title")}
-        />
+        />{console.log(bgImages)}
       </div>
-
       <div className="mb-3">
         <label className="form-label">Description</label>
         <input
@@ -78,22 +84,29 @@ const CreateForm = () => {
       </div>
       <div className="mb-3">
         <label className="form-label">Blog</label>
-        
+
         <JoditEditor
           ref={editor}
           value={content}
-          onChange={newContent =>setContent(newContent)}
+          config={config}
+          id="blog"
+          name="bacd"
+          onChange={(newContent) => {
+            setContent(newContent);
+          }}
+
+          // {...register("glob")}
         />
       </div>
       <div>
-        {console.log(content)}
+        {/* {console.log(content)} */}
         <div> {}</div>
 
         <p>
           {errors.title?.message} {errors.description?.message}
         </p>
       </div>
-
+      {/* {console.log(content,"cjdicj")} */}
       <div className="mb-3">
         <input type="submit" value={"Post" || ""} />
       </div>

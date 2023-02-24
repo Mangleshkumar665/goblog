@@ -8,8 +8,10 @@ import { db } from "./Config/firebase";
 import { useEffect, useState } from "react";
 import PostPage from "./Pages/PostPage/PostPage";
 import { collection, getDocs } from "firebase/firestore";
-import Footer from "./Components/Footer";
+
 import SignUp from "./Pages/AuthPage/SignUp";
+
+import Axios from "axios";
 
 function App() {
   const postsRef = collection(db, "posts");
@@ -19,12 +21,22 @@ function App() {
   const getPosts = async () => {
     const data = await getDocs(postsRef);
     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // console.log((data.docs.map((doc)=> ({...doc.data(),id :doc.id}))) , " hello ")
   };
 
+  // fetching images from online
+  const [bgImages, setBgImages] = useState("");
+  const fetchImages = () => {
+    const clientId = "ccZdovOGa9YsUypzzlCoJQYb4YiokLnJRlpY2AnjS4Y";
+    const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
+
+    Axios.get(endpoint).then((res) => {
+      setBgImages(res.data.urls.regular);
+      console.log(res.data.urls);
+    });
+  };
   useEffect(() => {
+    fetchImages();
     getPosts();
-    // getLikes();
   }, []);
 
   return (
@@ -33,9 +45,15 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/Signin" element={<Login />}></Route>
-          <Route path="/" element={<Home post={postsList} />}></Route>
+          <Route
+            path="/"
+            element={<Home post={postsList} bgImages={bgImages} />}
+          ></Route>
 
-          <Route path={"/user/:id"} element={<CreatePost />}></Route>
+          <Route
+            path={"/user/:id"}
+            element={<CreatePost bgImages={bgImages} />}
+          ></Route>
 
           <Route path={"/:id"} element={<PostPage post={postsList} />}></Route>
 

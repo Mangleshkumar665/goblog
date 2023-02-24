@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import {  collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import React from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";

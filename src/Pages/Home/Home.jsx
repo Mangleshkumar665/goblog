@@ -11,6 +11,7 @@ const Home = (props) => {
   const [user] = useAuthState(auth);
     // sending post object to the app.js 
   
+  const {post,bgImages} = props
   
 
   return (
@@ -20,8 +21,8 @@ const Home = (props) => {
       {/* fetching post here  */}
       <div className=" all-posts ">
         <div className="  my-2 d-flex justify-content-center align-items-center flex-column">
-          {props.post?.map((post) => (
-           <li key={post.id} className=" no-style"> <Post post={post} /> </li>
+          {post?.map((post) => (
+           <li key={post.id} className=" no-style"> <Post  post={post} bgImages={bgImages} /> </li>
           ))}
         </div>
       </div>

@@ -23,6 +23,7 @@
 .post-background{
   width: 100vw;
   height: 80vh;
+  object-fit: cover;
 
 }
 
@@ -116,7 +117,6 @@ body {
 
 .text-hello {
   font-family: 'Lato', sans-serif;
-
 }
 
 .text-name {
@@ -152,13 +152,21 @@ body {
 .wrapper{
 width: 75vw;
 position: absolute;
-top: 25vh;
-filter: invert(100%);
+top: 15vh;
+}
+
+.post-font{
+  background-color: rgb(255, 255, 255,0.8);
 }
 
 .textarea-body{
   border: 2px solid red ;
 }
+.fit{
+  width: fit-content;
+  
+}
+
 
 .editor{
   border: 2px solid red ;
@@ -171,7 +179,7 @@ filter: invert(100%);
   align-items: center;
   flex-direction: column;
   opacity: 1;
-  margin-top: 25vh;
+  margin-top: 10vh;
   
 }
 
@@ -513,9 +521,9 @@ ul {
     margin-left: -23px;
   }
 
-  .skills-cols {
+  .skills-cols{
     height: 5rem;
-    width: 10px;
+    width: 200px;
 
     border-radius: 5px;
     font-family: "lato", sans-serif;

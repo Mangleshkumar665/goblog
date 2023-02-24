@@ -4,9 +4,9 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../Config/firebase";
 import CreateForm from "./CreateForm";
 import ProfilePage from "./ProfilePage";
-const CreatePost = () => {
+const CreatePost = (props) => {
   const [user] = useAuthState(auth);
-
+  
 
   return (
     <>
@@ -18,9 +18,9 @@ const CreatePost = () => {
           <hr className="hr hr-blurry  mx-5  " />
         </div>
         {/* {console.log(user.uid === window.location.pathname.slice(6))} */}
+        {console.log(props.bgImages)}
         
-        
-        <CreateForm />  </div>
+        <CreateForm bgImages ={props.bgImages} />  </div>
         : 
         "" }
       

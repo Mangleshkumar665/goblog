@@ -15,8 +15,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar justify-content-center navbar-expand-lg bg-light container-fluid col sticky-top col">
-        {user ? <div className="nav-item col-7 d-flex align-items-center justify-content-center ">
+      
+
+
+      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      
+      
+      {user ? <div className="nav-item col-7 d-flex align-items-center justify-content-center ">
           <Link className="navbar-brand" to="/">
             Go Blogs
           </Link>
@@ -28,37 +33,52 @@ const Navbar = () => {
           </div>
           
         </div> }
-        
-        <div className=" col-5 nav-item  ">
-          <ul className=" d-flex justify-content-center align-items-center ">
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample04">
+        <ul class="navbar-nav mr-auto">
             
-            { user ? 
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+          { user ? 
+          <li class="nav-item active">
+            
+              <Link className="nav-link active"  to="/">
                 Home
               </Link>
-            </li> : ""
+          </li>
+          : ""
             }
 
-            {user ? 
-            <li className="nav-item">
+
+          {user ? 
+          <li class="nav-item active">
+            
               <Link
-                className="nav-link active"aria-current="page" to={`/user/${user?.uid}`} >
+                className="nav-link active" to={`/user/${user?.uid}`} >
                 Profile
               </Link>
-            </li> : "" }
-            { user ?
-            <li className="nav-item btn  ">
-              <button onClick={logOut}> Logout </button>
-            </li>
+              </li>
+             : "" }
+      
+          { user ?
+            <li class="nav-item active nav-link my-1  ">
+              <button onClick={logOut} style={{all:"unset",   padding:"3px",borderRadius:"4px"}}> Logout </button>
+              </li>
              :
-             ""
-            
-            
-}
-          </ul>
-        </div>
-      </nav>
+             "" }
+
+        </ul>
+        {/* <form class="form-inline my-2 my-md-0">
+          <input class="form-control" type="text" placeholder="Search" />
+        </form> */}
+      </div>
+    </nav>
+
+
+
     </>
   );
 };
