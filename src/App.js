@@ -23,19 +23,7 @@ function App() {
     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
-  // fetching images from online
-  const [bgImages, setBgImages] = useState("");
-  const fetchImages = () => {
-    const clientId = "ccZdovOGa9YsUypzzlCoJQYb4YiokLnJRlpY2AnjS4Y";
-    const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
-
-    Axios.get(endpoint).then((res) => {
-      setBgImages(res.data.urls.regular);
-      console.log(res.data.urls);
-    });
-  };
   useEffect(() => {
-    fetchImages();
     getPosts();
   }, []);
 
@@ -47,12 +35,11 @@ function App() {
           <Route path="/Signin" element={<Login />}></Route>
           <Route
             path="/"
-            element={<Home post={postsList} bgImages={bgImages} />}
+            element={<Home post={postsList}  />}
           ></Route>
-
           <Route
             path={"/user/:id"}
-            element={<CreatePost bgImages={bgImages} />}
+            element={<CreatePost  />}
           ></Route>
 
           <Route path={"/:id"} element={<PostPage post={postsList} />}></Route>

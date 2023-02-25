@@ -13,20 +13,18 @@ const MainScreen = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const usersRef = collection(db, "users");
-
-  // query related to adding user  in users database
-
   const signInwithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
       // getting current uid of the user
-      console.log(result._tokenResponse.localId);
+      
       if (getAdditionalUserInfo(result).isNewUser) {
         await addDoc(usersRef, {
           userId: result._tokenResponse.localId,
           username: result._tokenResponse.fullName,
           interests: [],
+          profileImage :"temp",
+          coverImage:"temp"
         });
       } else {
         console.log("old user");
@@ -37,11 +35,14 @@ const MainScreen = () => {
     }
   };
 
-// interests 
+// Cover and profile images generator  
 
 
-// interests end
- 
+
+
+
+// Cover and profile images generator  ends -- -- - --
+
 
   return (
     <div>

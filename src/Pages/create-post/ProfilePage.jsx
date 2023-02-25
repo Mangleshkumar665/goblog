@@ -1,13 +1,27 @@
+import Axios  from "axios";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import backgroundImages from "../../images/background.jpg";
-import profileThumb from "../../images/profileThumb.jpg";
 import UserPosts from "./UserPosts";
 
 const ProfilePage = (props) => {
-  
+  const [bgImages, setBgImages] = useState("");
+
+  const fetchImages = () => {
+    const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
+    const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=cute&orientation=landscape`;
+
+    Axios.get(endpoint).then((res) => {
+      // setBgImages(res.data.urls.regular);
+      console.log("data",res.data.urls.small ,"xxxxxxxxxxxxxxxxxxxx");
+    }).catch((err=>{
+      console.log(err)
+    }))
+  };
+
+
   const [user] = useAuthState(auth);
 
   const [post, setPost] = useState([]);
@@ -22,14 +36,15 @@ const ProfilePage = (props) => {
     const data = await getDocs(postsDocs);
 
     setPost(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })),"hck")
+    
   };
 
 
   useEffect(() => {
     getPosts();
+    // fetchImages();
   }, [])
-  
+
 
 
 
@@ -47,13 +62,12 @@ const ProfilePage = (props) => {
         <div className="user-details  d-flex justify-content-center align-items-center flex-column">
           <h2>
             {post[0]?.username} </h2>
-            
 
         </div>
       </div>
 
       <div className="user-post ">
-        <UserPosts post = {post}/>
+        <UserPosts post={post} />
       </div>
     </div>
   );

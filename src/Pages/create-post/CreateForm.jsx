@@ -10,9 +10,14 @@ import { useNavigate } from "react-router-dom";
 
 import JoditEditor from "jodit-react";
 import { useMemo } from "react";
+import axios from "axios";
 
-const CreateForm = (props) => {
-  const { bgImages } = props;
+const CreateForm = () => {
+
+
+
+
+
   // text editor ---
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -41,19 +46,23 @@ const CreateForm = (props) => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const onCreatePost = async (data) => {
-    // console.log("chl",data);
 
-    await addDoc(postsRef, {
+    const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
+    const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
+    
+    await axios.get(endpoint).then((res) => {
+      addDoc(postsRef, {
       description: data.description,
       title: data.title,
       userId: user?.uid,
       username: user?.displayName,
       blog: content,
-      background: bgImages,
+      background: res.data.urls.regular,
     });
-    await navigate("/");
-    await navigate(0);
+    navigate("/");
+  });
 
+    
     
   };
 
@@ -69,7 +78,7 @@ const CreateForm = (props) => {
           id="title"
           placeholder="Enter the post title here "
           {...register("title")}
-        />{console.log(bgImages)}
+        />
       </div>
       <div className="mb-3">
         <label className="form-label">Description</label>
@@ -99,14 +108,12 @@ const CreateForm = (props) => {
         />
       </div>
       <div>
-        {/* {console.log(content)} */}
         <div> {}</div>
 
         <p>
           {errors.title?.message} {errors.description?.message}
         </p>
       </div>
-      {/* {console.log(content,"cjdicj")} */}
       <div className="mb-3">
         <input type="submit" value={"Post" || ""} />
       </div>

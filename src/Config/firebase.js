@@ -43,8 +43,7 @@ export const  db = getFirestore(app);
 
 // 3.7- 
 // const onCreatePost = async(data)=>{
-//   console.log("submitted");
-//   console.log(data);
+//   
 //   await addDoc(postsRef,{
 //       description : data.description,
 //       title : data.title,

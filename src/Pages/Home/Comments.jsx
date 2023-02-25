@@ -120,7 +120,7 @@ const Comments = (props) => {
               <div className="show-comments ">
                 Comments
                 <hr />
-                {/* {console.log(commentsArray)} */}
+               
                 <div className="card" style={{ width: "18rem" }}>
                   <ul className="list-group list-group-flush">
                     {

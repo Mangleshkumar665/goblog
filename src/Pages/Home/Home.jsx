@@ -11,7 +11,7 @@ const Home = (props) => {
   const [user] = useAuthState(auth);
     // sending post object to the app.js 
   
-  const {post,bgImages} = props
+  const {post} = props
   
 
   return (
@@ -22,7 +22,7 @@ const Home = (props) => {
       <div className=" all-posts ">
         <div className="  my-2 d-flex justify-content-center align-items-center flex-column">
           {post?.map((post) => (
-           <li key={post.id} className=" no-style"> <Post  post={post} bgImages={bgImages} /> </li>
+           <li key={post.id} className=" no-style"> <Post  post={post}  /> </li>
           ))}
         </div>
       </div>

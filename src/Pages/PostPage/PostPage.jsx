@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import {
-  addDoc,
-  collection,
-  getDocs,
-  query,
-  where,
+
   deleteDoc,
   doc,
-  getDoc,
+
 } from "firebase/firestore";
 import { db } from "../../Config/firebase";
 import { useNavigate } from "react-router-dom";

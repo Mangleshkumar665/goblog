@@ -17,10 +17,8 @@ const CreatePost = (props) => {
           Create a Post 
           <hr className="hr hr-blurry  mx-5  " />
         </div>
-        {/* {console.log(user.uid === window.location.pathname.slice(6))} */}
-        {console.log(props.bgImages)}
         
-        <CreateForm bgImages ={props.bgImages} />  </div>
+        <CreateForm  />  </div>
         : 
         "" }
       

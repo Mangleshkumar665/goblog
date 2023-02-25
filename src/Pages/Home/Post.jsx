@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 export const PostProvider = createContext();
 
 const Post = (props) => {
-  const { post, bgImages } = props;
+  const { post } = props;
   const [totalComments, setTotalComments] = useState(0);
 
   const [user] = useAuthState(auth);
