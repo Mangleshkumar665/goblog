@@ -153,38 +153,51 @@ const Comments = (props) => {
             aria-labelledby={`flush-heading${props.post.id}`}
             data-bs-parent="#accordionFlushExample"
             style={{}}>
-            <div className="accordion-body ">
+            <div className="accordion-body " style={{fontSize:"20px"}}>
               <div className="add-comment">
                 <form onSubmit={handleSubmit(onCreateComment)}>
+                  
+                  <div className="  mx-2" style={{marginTop:"15px",marginBottom:"10px"}}>
+                  Add a new Comment- 
+                  </div>
                   <input
-                    className="form-control"
+                    className="form-control " 
                     type="text"
                     placeholder="comment here..."
                     {...register("comment")}
+                    style={{fontSize:"20px"}}
                   />
+                 
 
                   <div className="">
-                    <input type="submit" value="Post" />
+                    <input type="submit" className="btn btn-secondary"  value="Post" style={{margin:"10px",fontSize:"20px"}} />
                   </div>
+                  
                 </form>
               </div>
+
+              
               <div className="show-comments  ">
                 Comments
                 <hr />
                 <div className="card" style={{ width: "100%" }}>
-                  <ul className="list-group list-group-flush" >
+                  <ul className="list-group list-group-flush pt-2 pb-2" style={{fontSize:"18px"}} >
                     {
 
 
                       commentsArray?.map((element) => (
-                        <li key={element.commentId} className="  mx-2 my-1 " style={{border:"1px solid black"}} >
-                          <div className="card-header">
-                            {element.userName}
+                        <li key={element.commentId} className="  mx-2 my-2  rounded" style={{border:"1px solid grey"}} >
+                          <div className=" card-header" >
+                            By - {element.userName}
                             
                           </div>
-                          <div className="d-flex flex-row justify-content-between" style={{fontSize:"1.5rem"}}>
-                            <div >{element.comment}</div>
-                            <div> <button onClick={()=>removeComment(element)}><i className="fa-sharp fa-solid fa-xmark"></i></button></div>
+                          <div className=" d-flex flex-row justify-content-between" style={{fontSize:"1.5rem"}}>
+                            <div className=" mx-2 my-2"  >{element.comment}</div>
+                            {console.log(user?.uid,"chk")}
+                            
+                            { (user?.uid === element.userId || props.post.userId === user?.uid )? 
+                              <div className="my-2"> <button onClick={()=>removeComment(element)}><i className="fa-sharp fa-solid fa-xmark"></i></button>
+                            </div> :""}
                           </div>
                           
                         </li>

@@ -123,7 +123,7 @@ const Post = (props) => {
           </div>
         </div>
 
-        <div className="post-stats d-flex">
+        <div className="post-stats d-flex" style={{fontSize:"1.5rem"}}>
           <div className="likes-stats">{likes.length} Likes</div>
           <div className="comments-stats">{totalComments} Comments</div>
           {/* {console.log(totalComments)} */}

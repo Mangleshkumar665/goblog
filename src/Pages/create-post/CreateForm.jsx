@@ -12,9 +12,12 @@ import JoditEditor from "jodit-react";
 import { useMemo } from "react";
 import axios from "axios";
 
+import Filter from "bad-words"
 const CreateForm = () => {
 
+  // profanity checking 
 
+  const filter = new Filter()
 
 
 
@@ -51,12 +54,15 @@ const CreateForm = () => {
     const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
     
     await axios.get(endpoint).then((res) => {
+
+      
+
       addDoc(postsRef, {
-      description: data.description,
-      title: data.title,
+      description: filter.clean(data.description),
+      title: filter.clean(data.title),
       userId: user?.uid,
       username: user?.displayName,
-      blog: content,
+      blog: filter.clean(content),
       background: res.data.urls.regular,
     });
 
@@ -64,6 +70,9 @@ const CreateForm = () => {
   setTimeout(() => {
     navigate("/");
     navigate(0)
+    alert("posted successfully")
+
+
   }, 2000);
     
   };

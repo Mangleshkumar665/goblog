@@ -13,6 +13,7 @@ const ProfilePage = (props) => {
   const [user] = useAuthState(auth);
 
   const [post, setPost] = useState([]);
+
   const postsRef = collection(db, "posts");
   const postsDocs = query(postsRef, where("userId", "==", window.location.pathname.slice(6)));
 

@@ -10,6 +10,7 @@ import PostPage from "./Pages/PostPage/PostPage";
 import { collection, getDocs } from "firebase/firestore";
 
 import SignUp from "./Pages/AuthPage/SignUp";
+import AdvancedCreatePost from "./Components/AdvancedCreatePost";
 
 
 function App() {
@@ -43,7 +44,11 @@ function App() {
 
           <Route path={"/:id"} element={<PostPage post={postsList} />}></Route>
 
-          <Route path={"/signup"} element={<SignUp post={postsList} />}></Route>
+          <Route path={"/signup"} element={<SignUp post=  {postsList} />}></Route>
+
+          <Route path ={"/user/:id/create-post"} element={ <AdvancedCreatePost /> } > </Route>
+          
+
         </Routes>
       </Router>
     </>
