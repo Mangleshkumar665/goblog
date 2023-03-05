@@ -11,7 +11,6 @@ import { collection, getDocs } from "firebase/firestore";
 
 import SignUp from "./Pages/AuthPage/SignUp";
 
-import Axios from "axios";
 
 function App() {
   const postsRef = collection(db, "posts");

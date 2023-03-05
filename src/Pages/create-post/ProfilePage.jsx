@@ -7,20 +7,8 @@ import backgroundImages from "../../images/background.jpg";
 import UserPosts from "./UserPosts";
 
 const ProfilePage = (props) => {
-  const [bgImages, setBgImages] = useState("");
-
-  const fetchImages = () => {
-    const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
-    const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=cute&orientation=landscape`;
-
-    Axios.get(endpoint).then((res) => {
-      // setBgImages(res.data.urls.regular);
-      console.log("data",res.data.urls.small ,"xxxxxxxxxxxxxxxxxxxx");
-    }).catch((err=>{
-      console.log(err)
-    }))
-  };
-
+ 
+  const bgi = "background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);"
 
   const [user] = useAuthState(auth);
 
@@ -40,28 +28,43 @@ const ProfilePage = (props) => {
   };
 
 
+  const [userInfo, setUserInfo] = useState([]);
+  const usersRef = collection(db, "users");
+  const usersDocs = query(usersRef, where("userId", "==", window.location.pathname.slice(6)));
+
+  const getUserInfo =  async () => {
+    const data = await getDocs(usersDocs);
+    setUserInfo(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));    
+  };
+
+
   useEffect(() => {
     getPosts();
-    // fetchImages();
+    getUserInfo();
   }, [])
 
 
 
 
+
+
+
   return (
-    <div className="">
-      <div className="user-image">
-        <img
-          src={backgroundImages}
-          className="img-fluid profile-bg "
-          alt="backgroundimage"
-        />
-      </div>
-      <div className="about-imgLayer" data-aos="fade-right">
-        <img className=" about-img" src={user?.photoURL} alt="profilepic" />
+    <>
+      <div className="user-image "></div>
+
+<div className="container">
+    {/* {console.log(userInfo)} */}
+  
+      
+      <div className="about-imgLayer" data-aos="fade-right" >
+        {(userInfo[0]?.profileImage) ? <img className=" about-img sticky-top" src={userInfo[0]?.profileImage} alt="profilepic"  />:
+        <i className="fa fa-camera-retro fa-8x"></i>
+         }
+        
         <div className="user-details  d-flex justify-content-center align-items-center flex-column">
-          <h2>
-            {post[0]?.username} </h2>
+          <h2 >{userInfo[0]?.username} </h2>
+            
 
         </div>
       </div>
@@ -70,6 +73,7 @@ const ProfilePage = (props) => {
         <UserPosts post={post} />
       </div>
     </div>
+    </>
   );
 };
 

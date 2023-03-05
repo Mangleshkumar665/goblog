@@ -59,10 +59,12 @@ const CreateForm = () => {
       blog: content,
       background: res.data.urls.regular,
     });
-    navigate("/");
-  });
 
-    
+  });
+  setTimeout(() => {
+    navigate("/");
+    navigate(0)
+  }, 2000);
     
   };
 
@@ -104,7 +106,6 @@ const CreateForm = () => {
             setContent(newContent);
           }}
 
-          // {...register("glob")}
         />
       </div>
       <div>

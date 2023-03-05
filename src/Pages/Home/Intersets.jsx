@@ -51,7 +51,12 @@ const Intersets = () => {
   
 
   return (
+    <>
+{
+  user ?
+
     <div>
+
       <button
         type="button"
         className="btn  btn-lg "
@@ -63,7 +68,7 @@ const Intersets = () => {
           marginTop: "3px",
         }}
       >
-        Tells Us About Your Interests{" "}
+        { interestsArray  === [] ?"Tells Us About Your Interests" : "Edit Your Interests"}
       </button>
 
       <div id="myModal" className="modal fade" role="dialog">
@@ -167,6 +172,8 @@ const Intersets = () => {
         </div>
       </div>
     </div>
+    :""}
+    </>
   );
 };
 export default Intersets;

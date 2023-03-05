@@ -10,8 +10,9 @@ const UserPosts = (props) => {
 
   return (
     <div className="" style={{ position: "relative", top: "150px" }}>
+      {/* {console.log(window.location.pathname.split('/')[2])} */}
       <div className="display-4 text-center p-2    ">
-        { window.location.pathname.slice[6] === user?.uid ?  "Your Blogs" : "Blogs" }
+        { window.location.pathname.split('/')[2] === user?.uid ?  "Your Blogs" : "Blogs" }
         
         
         <hr className="hr hr-blurry  mx-5  " />

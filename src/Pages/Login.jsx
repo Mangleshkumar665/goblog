@@ -17,11 +17,7 @@ const Login = () => {
   };
   return (
     <div>
-      <p> Sign in with -- </p>
-      <button onClick={signInwithGoogle} style={{ all: "unset" }}>
-        
-        <i class="fa-brands fa-google"></i>{" "}
-      </button>
+      
     </div>
   );
 };

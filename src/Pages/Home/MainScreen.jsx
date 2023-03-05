@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Axios from "axios";
 import backgroundImages from "K:/work/js/majorProjects/SocialMediaApp/socialmediaapp/src/images/background.jpg";
 import { useNavigate } from "react-router-dom";
@@ -13,47 +13,56 @@ const MainScreen = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const usersRef = collection(db, "users");
+  
+  
+  
+  
+  const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
+  
+  const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
+  
+  
   const signInwithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       // getting current uid of the user
-      
       if (getAdditionalUserInfo(result).isNewUser) {
-        await addDoc(usersRef, {
+        
+        await Axios.get(endpoint).then((res)=>{
+
+        addDoc(usersRef, {
           userId: result._tokenResponse.localId,
           username: result._tokenResponse.fullName,
           interests: [],
-          profileImage :"temp",
-          coverImage:"temp"
+          profileImage :res.data.urls.regular,
+          coverImage:res.data.urls.regular
         });
+      })
       } else {
         console.log("old user");
       }
       navigate("/");
+      navigate(0);
     } catch (error) {
       console.log(error);
     }
   };
 
-// Cover and profile images generator  
-
-
-
-
-
-// Cover and profile images generator  ends -- -- - --
-
 
   return (
-    <div>
+    <div className=""> 
+      
       {/* interests   */}
       <Intersets />
       {/* intersets over  */}
+
       <div>
         <img
           src={backgroundImages}
           className="img-fluid img-bgC "
           alt="backgroundimage"
+  
+  style={{boxShadow:" 0 15px 25px rgba(92, 91, 91, 0.5"}}
         />
       </div>
 
@@ -97,7 +106,6 @@ const MainScreen = () => {
       </div>
     </div>
 
-    // </div>
   );
 };
 

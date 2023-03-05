@@ -5,13 +5,15 @@ import {
   doc,
 
 } from "firebase/firestore";
-import { db } from "../../Config/firebase";
+import { auth, db } from "../../Config/firebase";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const PostPage = (props) => {
+  const [user] = useAuthState(auth)
+
   const { post } = props;
   const [currentPost, setCurrentPost] = useState([]);
-
   const getCurrentPost = () => {
     setCurrentPost(
       post?.filter(
@@ -86,8 +88,10 @@ const PostPage = (props) => {
               </div>
             </div>
           </div>
-
-          <div className="d-flex justiy-content-center flex-row"  style={{position:"absolute",top:"80vh", left:"80vw" ,boxShadow: "0 4px 12px rgba(44, 44, 44, 0.5)"}}>
+    {console.log(currentPost[0])}
+          <div className=" postPage-buttons d-flex justiy-content-center flex-row " >
+           { currentPost[0]?.userId === user?.uid ?
+           <div>
             <button className="btn mx-1" style={{background :"white"}}>
               Edit Post 
             </button>
@@ -95,7 +99,8 @@ const PostPage = (props) => {
             <button className="btn" style={{background :"white"}} onClick={deletePost}>
               Delete Post
             </button>
-
+            </div> : ""
+          }
           </div>
 
 
@@ -106,8 +111,6 @@ const PostPage = (props) => {
       <div className="" style={{marginTop:"50px" ,marginBottom:"50px",padding:"10px"}}>
         <div dangerouslySetInnerHTML={{__html:currentPost[0]?.blog}} className="container " >
         </div>
-
-        
       </div>
 
     </div>

@@ -6,19 +6,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 const Navbar = () => {
 
   const Navigate = useNavigate();
-  const logOut = () => {
-    signOut(auth);
-    Navigate("/")
-
-  };
+  const logOut = async () => {
+    await signOut(auth);
+     Navigate("/")
+     Navigate(0)
+  
+    };
   const [ user] = useAuthState(auth); 
-
   return (
     <>
       
 
 
-      <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <nav className="navbar  navbar-expand-md  navbar-body">
       
       
       {user ? <div className="nav-item col-7 d-flex align-items-center justify-content-center ">
@@ -34,16 +34,16 @@ const Navbar = () => {
           
         </div> }
 
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav mr-auto">
+      {user ?<button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon"></span>
+      </button> : ""
+ }
+      
+      <div className="collapse navbar-collapse" id="navbarsExample04">
+        <ul className="navbar-nav mr-auto">
             
           { user ? 
-          <li class="nav-item active">
+          <li className="nav-item active">
             
               <Link className="nav-link active"  to="/">
                 Home
@@ -54,7 +54,7 @@ const Navbar = () => {
 
 
           {user ? 
-          <li class="nav-item active">
+          <li className="nav-item active">
             
               <Link
                 className="nav-link active" to={`/user/${user?.uid}`} >
@@ -64,15 +64,15 @@ const Navbar = () => {
              : "" }
       
           { user ?
-            <li class="nav-item active nav-link my-1  ">
+            <li className="nav-item active nav-link my-1  ">
               <button onClick={logOut} style={{all:"unset",   padding:"3px",borderRadius:"4px"}}> Logout </button>
               </li>
              :
              "" }
 
         </ul>
-        {/* <form class="form-inline my-2 my-md-0">
-          <input class="form-control" type="text" placeholder="Search" />
+        {/* <form className="form-inline my-2 my-md-0">
+          <input className="form-control" type="text" placeholder="Search" />
         </form> */}
       </div>
     </nav>
