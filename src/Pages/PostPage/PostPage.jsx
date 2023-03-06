@@ -79,24 +79,17 @@ const PostPage = (props) => {
             <div className=" display-6  my-4 post-font fit">
               Posted By :{currentPost[0]?.username}
             </div>
-            <div className=" display-6 row  post-font">
-              <div className=" likes col " style={{ fontSize: "2.5rem" }}>
-                Likes :
-              </div>
-              <div className=" comments col " style={{ fontSize: "2.5rem" }}>
-                comments :
-              </div>
-            </div>
+            
           </div>
     {console.log(currentPost[0])}
           <div className=" postPage-buttons d-flex justiy-content-center flex-row " >
            { currentPost[0]?.userId === user?.uid ?
            <div>
-            <button className="btn mx-1" style={{background :"white"}}>
+            {/* <button className="btn btn-dark mx-1" >
               Edit Post 
-            </button>
+            </button> */}
 
-            <button className="btn" style={{background :"white"}} onClick={deletePost}>
+            <button className="btn btn-dark" style={{ margin:"5px"}} onClick={deletePost}>
               Delete Post
             </button>
             </div> : ""

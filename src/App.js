@@ -10,7 +10,8 @@ import PostPage from "./Pages/PostPage/PostPage";
 import { collection, getDocs } from "firebase/firestore";
 
 import SignUp from "./Pages/AuthPage/SignUp";
-import AdvancedCreatePost from "./Components/AdvancedCreatePost";
+
+import CreateForm from "./Pages/create-post/CreateForm";
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
 
           <Route path={"/signup"} element={<SignUp post=  {postsList} />}></Route>
 
-          <Route path ={"/user/:id/create-post"} element={ <AdvancedCreatePost /> } > </Route>
+          <Route path ={"/user/:id/create-post"} element={ <CreateForm /> } > </Route>
           
 
         </Routes>

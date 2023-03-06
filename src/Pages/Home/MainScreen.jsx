@@ -1,6 +1,7 @@
 import React from "react";
 import Axios from "axios";
-import backgroundImages from "K:/work/js/majorProjects/SocialMediaApp/socialmediaapp/src/images/background.jpg";
+import backgroundImages from "../../images/background.jpg";
+import backimg2 from "../../images/4.jpg"
 import { useNavigate } from "react-router-dom";
 import { getAdditionalUserInfo, signInWithPopup } from "firebase/auth";
 import { auth, db, provider } from "../../Config/firebase";
@@ -59,20 +60,28 @@ const MainScreen = () => {
       <div>
         <img
           src={backgroundImages}
-          className="img-fluid img-bgC "
+          className="img-fluid img-bgC background-one "
           alt="backgroundimage"
   
-  style={{boxShadow:" 0 15px 25px rgba(92, 91, 91, 0.5"}}
+        style={{boxShadow:" 0 15px 25px rgba(92, 91, 91, 0.5"}}
+        />
+
+<img
+          src={backimg2}
+          className="img-fluid img-bgC  background-two"
+          alt="backgroundimage"
+  
+        style={{boxShadow:" 0 15px 25px rgba(92, 91, 91, 0.5"}}
         />
       </div>
 
       <div>
         <div className=" heading-content text-center   ">
           <div className=" display-1 text-hello  ">
-            <h1>Go Blogs </h1>
+            <h1>Go Blog </h1>
           </div>
           <div className=" display-6 text-caption my-4 ">
-            Content: there is no easy button
+          Where Words Come to Life
           </div>
         </div>
       </div>

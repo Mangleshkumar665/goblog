@@ -15,6 +15,25 @@ import axios from "axios";
 import Filter from "bad-words"
 const CreateForm = () => {
 
+  // adding tags 
+  const [tagsArray, setTagsArray] = useState(["Others"])
+
+  const tagSelection = (event) => {
+    if (!tagsArray.includes(event.target.value)) {
+      setTagsArray([event.target.value, ...tagsArray]);
+
+    } else {
+      console.log("duplicate elements ");
+      setTagsArray(
+        tagsArray.filter((element) => element !== event.target.value)
+      );
+    }
+  };
+
+
+
+  // adding tags ended here  -----
+
   // profanity checking 
 
   const filter = new Filter()
@@ -52,86 +71,199 @@ const CreateForm = () => {
 
     const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
     const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
-    
+
     await axios.get(endpoint).then((res) => {
 
-      
+
 
       addDoc(postsRef, {
-      description: filter.clean(data.description),
-      title: filter.clean(data.title),
-      userId: user?.uid,
-      username: user?.displayName,
-      blog: filter.clean(content),
-      background: res.data.urls.regular,
+        description: filter.clean(data.description),
+        title: filter.clean(data.title),
+        userId: user?.uid,
+        username: user?.displayName,
+        blog: filter.clean(content),
+        background: res.data.urls.regular,
+        tags :tagsArray,
+      });
+
     });
+    setTimeout(() => {
+      navigate("/");
+      navigate(0)
+      alert("posted successfully")
+    }, 2000);
 
-  });
-  setTimeout(() => {
-    navigate("/");
-    navigate(0)
-    alert("posted successfully")
-
-
-  }, 2000);
-    
   };
 
   // addding background image  to the posts -
 
   return (
-    <form className="contianer mx-5  m-4" onSubmit={handleSubmit(onCreatePost)}>
-      <div className="mb-3 contact-card">
-        <label className="form-label">Title</label>
-        <input
-          type="text"
-          className="form-control"
-          id="title"
-          placeholder="Enter the post title here "
-          {...register("title")}
-        />
-      </div>
-      <div className="mb-3">
-        <label className="form-label">Description</label>
-        <input
-          type="text"
-          className="form-control"
-          id="description"
-          placeholder="Enter the description post here"
-          rows="3"
-          {...register("description")}
-        />
-      </div>
-      <div className="mb-3">
-        <label className="form-label">Blog</label>
-
-        <JoditEditor
-          ref={editor}
-          value={content}
-          config={config}
-          id="blog"
-          name="bacd"
-          onChange={(newContent) => {
-            setContent(newContent);
-          }}
-
-        />
-      </div>
-      <div>
-        <div> {}</div>
-
-        <p>
-          {errors.title?.message} {errors.description?.message}
-        </p>
-      </div>
-      <div className="mb-3">
-        <input type="submit" value={"Post" || ""} />
+    <div className="container  form-head">
+      <div className="display-4 text-center p-2    ">
+        Create a Post
+        <hr className="hr hr-blurry  mx-5  " />
       </div>
 
-      <div className="mb-3">
-        <input type="submit" value={"Clear" || ""} />
-      </div>
-    </form>
+
+      <form className="contianer mx-5  m-4" onSubmit={handleSubmit(onCreatePost)}>
+        <div className="mb-3 contact-card">
+          <label className="form-label">Title</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            placeholder="Enter the post title here "
+            {...register("title")}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Description</label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            placeholder="Enter the description post here"
+            rows="3"
+            {...register("description")}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Blog</label>
+
+          <JoditEditor
+            ref={editor}
+            value={content}
+            config={config}
+            id="blog"
+            name="bacd"
+            onChange={(newContent) => {
+              setContent(newContent);
+            }}
+
+          />
+        </div>
+        <div className="">
+
+          <div >
+            <div className="">
+              <div className="">
+                <div className="">
+                  
+                  <h4 className="">Select Tags</h4>
+                </div>
+                <div className="">
+                  <div>
+                    <div
+                      className="btn-group"
+                      role="group"
+                      aria-label="Basic example"
+                    >
+                      <button
+                        type="button"
+                        value="Movies"
+                        className="btn btn-secondary"
+                        onClick={tagSelection}
+                      >
+                        Movies
+                      </button>
+                      <button
+                        type="button"
+                        value="LifeStyle"
+                        className="btn btn-secondary"
+                        onClick={tagSelection}
+                      >
+                        LifeStyle
+                      </button>
+                      <button
+                        type="button"
+                        value="Music"
+                        className="btn btn-secondary"
+                        onClick={tagSelection}
+                      >
+                        Music
+                      </button>
+
+                      <button
+                        type="button"
+                        value="Sports"
+                        className="btn btn-secondary"
+                        onClick={tagSelection}
+                      >
+                        Sports
+                      </button>
+                      <button
+                        type="button"
+                        value="News"
+                        className="btn btn-secondary "
+                        onClick={tagSelection}
+                      >
+                        News
+                      </button>
+
+                      <button
+                        type="button"
+                        value="Others"
+                        className="btn btn-secondary "
+                        onClick={tagSelection}
+                      >
+                        Others
+                      </button>
+
+                    </div>
+
+                    <div className="">
+                      <hr />
+                      <div>
+                        {tagsArray.map((data) => (
+                          <button
+                            type="button"
+                            key={data}
+                            value={data}
+                            className="btn btn-secondary "
+                            onClick={tagSelection}
+                          >
+                            {data}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+
+                  
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    data-bs-dismiss="modal"
+                    onClick={()=> setTagsArray(["Others"])}
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <p>
+            {errors.title?.message} {errors.description?.message}
+          </p>
+        </div>
+        <div className="mb-3">
+          <input type="submit" className="btn btn-primary" value={"Post" || ""} />
+        </div>
+
+        <div className="mb-3">
+          <input type="submit" className=" btn btn-danger" value={"Clear" || ""} />
+        </div>
+      </form>
+    </div>
+
   );
 };
 

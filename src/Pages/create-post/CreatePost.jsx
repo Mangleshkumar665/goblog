@@ -12,13 +12,10 @@ const CreatePost = (props) => {
     <>
       <ProfilePage />
       { user?.uid === window.location.pathname.slice(6)?
-      <div className="container  form-head">
-        <div className="display-4 text-center p-2    ">
-          Create a Post 
-          <hr className="hr hr-blurry  mx-5  " />
-        </div>
+      
         
-        <CreateForm  />  </div>
+        
+        <CreateForm /> 
         : 
         "" }
       
