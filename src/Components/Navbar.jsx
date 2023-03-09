@@ -16,10 +16,8 @@ const Navbar = () => {
   return (
     <>
 
-
-
-      <nav className="navbar  navbar-expand-md  navbar-body">
-
+      { user?
+      <nav className="navbar navbar-body  d-flex  justify-content-center">
 
         {user ? <div className="nav-item col-7 d-flex align-items-center justify-content-center ">
           <Link className="navbar-brand" to="/">
@@ -34,18 +32,13 @@ const Navbar = () => {
 
         </div>}
 
-        {user ? <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button> : ""
-        }
 
-        <div className="collapse navbar-collapse" id="navbarsExample04">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav mr-auto  flex-row    ">
 
             {user ?
-              <li className="nav-item active">
+              <li className="nav-item active ">
 
-                <Link className="nav-link active" to="/">
+                <Link className="nav-link navbar-btns d-flex justify-content-center active" to="/">
                   Home
                 </Link>
               </li>
@@ -53,10 +46,10 @@ const Navbar = () => {
             }
 
             {user ?
-              <li className="nav-item active">
+              <li className="nav-item active ">
 
                 <Link
-                  className="nav-link active" to={`/user/${user?.uid}/create-post`} >
+                  className="nav-link active navbar-btns d-flex justify-content-center" to={`/user/${user?.uid}/create-post`} >
                   Create 
                 </Link>
               </li>
@@ -64,10 +57,10 @@ const Navbar = () => {
 
 
             {user ?
-              <li className="nav-item active">
+              <li className="nav-item active ">
 
                 <Link
-                  className="nav-link active" to={`/user/${user?.uid}`} >
+                  className="nav-link active navbar-btns d-flex justify-content-center" to={`/user/${user?.uid}`} >
                   Profile
                 </Link>
               </li>
@@ -77,20 +70,18 @@ const Navbar = () => {
 
 
             {user ?
-              <li className="nav-item active nav-link my-1  ">
-                <button onClick={logOut} style={{ all: "unset", padding: "3px", borderRadius: "4px" }}> Logout </button>
+              <li className="nav-item active nav-link my-1 navbar-btns ">
+                <button onClick={logOut} style={{ all: "unset", padding: "3px", borderRadius: "4px" }} className="d-flex justify-content-center"> Logout </button>
               </li>
               :
               ""}
 
           </ul>
-          {/* <form className="form-inline my-2 my-md-0">
-          <input className="form-control" type="text" placeholder="Search" />
-        </form> */}
-        </div>
+          
+      
       </nav>
-
-
+:""
+}
 
     </>
   );

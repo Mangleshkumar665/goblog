@@ -8,6 +8,7 @@ import {
 import { auth, db } from "../../Config/firebase";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from "../../Components/Footer";
 
 const PostPage = (props) => {
   const [user] = useAuthState(auth)
@@ -81,7 +82,7 @@ const PostPage = (props) => {
             </div>
             
           </div>
-    {console.log(currentPost[0])}
+    {/* {console.log(currentPost[0])} */}
           <div className=" postPage-buttons d-flex justiy-content-center flex-row " >
            { currentPost[0]?.userId === user?.uid ?
            <div>
@@ -105,7 +106,7 @@ const PostPage = (props) => {
         <div dangerouslySetInnerHTML={{__html:currentPost[0]?.blog}} className="container " >
         </div>
       </div>
-
+      <Footer />
     </div>
   );
 };

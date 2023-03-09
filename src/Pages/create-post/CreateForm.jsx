@@ -12,7 +12,9 @@ import JoditEditor from "jodit-react";
 import { useMemo } from "react";
 import axios from "axios";
 
-import Filter from "bad-words"
+import Filter from "bad-words";
+
+
 const CreateForm = () => {
 
   // adding tags 
@@ -98,7 +100,7 @@ const CreateForm = () => {
   // addding background image  to the posts -
 
   return (
-    <div className="container  form-head">
+    <div className="container  form-head" style={{marginBottom:"300px", padding:"10px"}}>
       <div className="display-4 text-center p-2    ">
         Create a Post
         <hr className="hr hr-blurry  mx-5  " />
@@ -106,7 +108,7 @@ const CreateForm = () => {
 
 
       <form className="contianer mx-5  m-4" onSubmit={handleSubmit(onCreatePost)}>
-        <div className="mb-3 contact-card">
+        <div className="mb-3 ">
           <label className="form-label">Title</label>
           <input
             type="text"
@@ -151,18 +153,21 @@ const CreateForm = () => {
                   
                   <h4 className="">Select Tags</h4>
                 </div>
-                <div className="">
-                  <div>
+                <div className=" ">
+                  <div className="" >
                     <div
-                      className="btn-group"
+                      className="  "
                       role="group"
-                      aria-label="Basic example"
+                      aria-label="Basic example" style={{
+                        flexWrap:"wrap"
+                      }}
                     >
                       <button
                         type="button"
                         value="Movies"
                         className="btn btn-secondary"
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         Movies
                       </button>
@@ -171,6 +176,7 @@ const CreateForm = () => {
                         value="LifeStyle"
                         className="btn btn-secondary"
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         LifeStyle
                       </button>
@@ -179,6 +185,7 @@ const CreateForm = () => {
                         value="Music"
                         className="btn btn-secondary"
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         Music
                       </button>
@@ -188,6 +195,7 @@ const CreateForm = () => {
                         value="Sports"
                         className="btn btn-secondary"
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         Sports
                       </button>
@@ -196,6 +204,7 @@ const CreateForm = () => {
                         value="News"
                         className="btn btn-secondary "
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         News
                       </button>
@@ -205,15 +214,16 @@ const CreateForm = () => {
                         value="Others"
                         className="btn btn-secondary "
                         onClick={tagSelection}
+                        style={{margin:"5px"}}
                       >
                         Others
                       </button>
 
                     </div>
 
-                    <div className="">
+                    <div className="my-1">
                       <hr />
-                      <div>
+                      <div className="">
                         {tagsArray.map((data) => (
                           <button
                             type="button"
@@ -221,6 +231,7 @@ const CreateForm = () => {
                             value={data}
                             className="btn btn-secondary "
                             onClick={tagSelection}
+                            style={{margin:"5px"}}
                           >
                             {data}
                           </button>
@@ -254,14 +265,13 @@ const CreateForm = () => {
             {errors.title?.message} {errors.description?.message}
           </p>
         </div>
-        <div className="mb-3">
+        <div className="mb-3  d-flex justify-content-center">
           <input type="submit" className="btn btn-primary" value={"Post" || ""} />
         </div>
 
-        <div className="mb-3">
-          <input type="submit" className=" btn btn-danger" value={"Clear" || ""} />
-        </div>
+       
       </form>
+  
     </div>
 
   );

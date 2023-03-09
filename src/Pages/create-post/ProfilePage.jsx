@@ -2,6 +2,7 @@ import Axios  from "axios";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from "../../Components/Footer";
 import { auth, db } from "../../Config/firebase";
 import backgroundImages from "../../images/background.jpg";
 import UserPosts from "./UserPosts";
@@ -73,6 +74,7 @@ const ProfilePage = (props) => {
       <div className="user-post ">
         <UserPosts post={post} />
       </div>
+      
     </div>
     </>
   );

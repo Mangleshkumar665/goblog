@@ -361,6 +361,22 @@ postPage-buttons{
 
 }
 
+.footer-body{
+  background-color:#e5e5e5 ;
+  box-shadow: 0 -2px -5px rgba(0, 135, 147, 0.5);
+  position: relative;
+  top: 5vh;
+
+}
+
+
+.navbar-btns:hover{
+  background-color: rgb(224, 177, 26,0.7);
+  border-radius: 30px;
+}
+
+
+
 @media only screen and (max-width: 600px) {
 
   .about-imgLayer {
@@ -445,6 +461,7 @@ postPage-buttons{
 
   }
 
+ 
 
 
 
@@ -474,6 +491,30 @@ postPage-buttons{
 
     
   }
+
+  .background-one{
+    height:70vh;
+  }
+  .background-two{
+    height:70vh;
+  }
+  .posts-main {
+    width: 80vw;
+    position: relative;
+    bottom: 150px;
+
+  }
+  
+  .user-image{
+    height: 20vh;
+  }
+  
+  .about-img{
+    position: absolute;
+    top: 175px;
+    width: 50vw;
+  }
+
 
 
 

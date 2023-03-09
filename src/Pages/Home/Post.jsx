@@ -14,6 +14,7 @@ import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
 import tempBg from "../../images/posts.jpg";
 import { Link } from "react-router-dom";
+import Footer from "../../Components/Footer";
 
 export const PostProvider = createContext();
 
@@ -83,7 +84,7 @@ const Post = (props) => {
 
   return (
     <>
-      <div className="card posts-main ">
+      <div className="card posts-main  ">
         <h3 className=" post-profileheader d-flex align-items-center">
           <Link className="navbar-brand" to={`/user/${post.userId}`}>
             {post.username}
@@ -129,6 +130,7 @@ const Post = (props) => {
           {/* {console.log(totalComments)} */}
         </div>
       </div>
+      
     </>
   );
 };

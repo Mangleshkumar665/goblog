@@ -16,7 +16,7 @@ const CreatePost = (props) => {
         
         
         <CreateForm /> 
-        : 
+        :  
         "" }
       
     </>

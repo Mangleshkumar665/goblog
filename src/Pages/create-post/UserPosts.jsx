@@ -1,4 +1,5 @@
 import { useAuthState } from "react-firebase-hooks/auth";
+import Footer from "../../Components/Footer";
 import { auth } from "../../Config/firebase";
 import Post from "../Home/Post";
 
@@ -59,6 +60,7 @@ const UserPosts = (props) => {
         ))}
         {/* {console.log(window.location.pathname.slice(6)) } */}
       </div>
+      
     </div>
   );
 };
