@@ -12,9 +12,9 @@ import React, { useEffect, useState, createContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
-import tempBg from "../../images/posts.jpg";
 import { Link } from "react-router-dom";
-import Footer from "../../Components/Footer";
+import liked from "../../images/liked.png"
+import {motion} from "framer-motion"
 
 export const PostProvider = createContext();
 
@@ -90,13 +90,15 @@ const Post = (props) => {
             {post.username}
           </Link>
         </h3>
-        <div className="post-imgwrapper">
+        <motion.div className="post-imgwrapper"whileHover={{ scale: [null, 1.1, 1.1] }}
+              transition={{ duration: 0.3 }}>
           <img src={post.background} className=" post-img" alt="..." />
-        </div>
+        </motion.div>
         <div className="card-body post-details">
-          <h5 className=" post-title">
-            <Link to={`/${post.id}`}>{post.title}</Link>
-          </h5>
+          <motion.h5 className=" post-title"whileHover={{ scale: [null, 1.01, 1.1] }}
+              transition={{ duration: 0.3 }} >
+            <Link to={`/${post.id}`} style={{all:"unset",color:"grey"}}>{post.title}</Link>
+          </motion.h5>
 
           <p className="post-desc">{post.description}</p>
 
@@ -104,30 +106,36 @@ const Post = (props) => {
           <div className="post-buttons row  ">
             <div className="col-2">
               {hasCurrentUserLiked ? (
-                <button onClick={removeLike}>
-                  <i className="fa-solid fa-heart fa-xl"></i>{" "}
-                </button>
+                <motion.button onClick={removeLike}
+                whileHover={{ scale: [null, 1.5, 1.4] }}
+              transition={{ duration: 0.3 }}
+                >
+                  <img src={liked} alt="liked" style={{width:"27px"}}/>
+                </motion.button>
               ) : (
-                <button onClick={addLike} className="post-Btns">
+                <motion.button onClick={addLike} className="post-Btns"
+                whileHover={{ scale: [null, 1.5, 1.4] }}
+              transition={{ duration: 0.3 }}>
+                  
                   <i className="fa-regular fa-heart fa-xl"></i>
-                </button>
+                </motion.button>
               )}
 
               {/* like button logic -- ends --  */}
             </div>
-            <div className="col-5  ">
+            <motion.div className="col-5  "
+            >
               <Comments
                 post={post}
                 setTotalComments={() => setTotalComments()}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
 
         <div className="post-stats d-flex" style={{fontSize:"1.5rem"}}>
-          <div className="likes-stats">{likes.length} Likes</div>
-          <div className="comments-stats">{totalComments} Comments</div>
-          {/* {console.log(totalComments)} */}
+          <div className="likes-stats mx-3">{likes.length} Likes</div>
+          
         </div>
       </div>
       

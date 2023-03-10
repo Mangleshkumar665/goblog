@@ -153,8 +153,8 @@ const CreateForm = () => {
                   
                   <h4 className="">Select Tags</h4>
                 </div>
-                <div className=" ">
-                  <div className="" >
+                <div >
+                  <div  >
                     <div
                       className="  "
                       role="group"

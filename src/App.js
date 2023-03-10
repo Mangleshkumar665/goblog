@@ -12,7 +12,7 @@ import { collection, getDocs } from "firebase/firestore";
 import SignUp from "./Pages/AuthPage/SignUp";
 
 import CreateForm from "./Pages/create-post/CreateForm";
-import Footer from "./Components/Footer";
+
 
 
 function App() {

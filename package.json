@@ -10,6 +10,7 @@
     "axios": "^1.3.2",
     "bad-words": "^3.0.4",
     "firebase": "^9.17.1",
+    "framer-motion": "^10.2.4",
     "html-react-parser": "^3.0.9",
     "jodit-react": "^1.3.36",
     "randomstring": "^1.2.3",

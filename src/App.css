@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat&family=Noto+Sans:wght@300;400;600&family=Poppins&display=swap');
 
 .navbar-body {
-  background-color: rgb(240, 240, 240,0.7);
+  background-color: rgb(240, 240, 240, 0.7);
 
 }
 
@@ -16,10 +16,11 @@
   z-index: -1;
 }
 
-.background-one{
+.background-one {
   clip-path: polygon(0 0, 60% 0, 46% 100%, 0% 100%);
 }
-.background-two{
+
+.background-two {
   clip-path: polygon(100% 0, 60% 0, 46% 100%, 100% 100%);
 
 }
@@ -295,7 +296,7 @@ li {
   height: 30vh;
   border-radius: 5px;
   box-shadow: 1px 3px 12px rgba(2, 2, 2, 0.18);
-  border: 3px solid #015158; 
+  border: 3px solid #015158;
 }
 
 .form-head {
@@ -340,39 +341,45 @@ ul {
 }
 
 
-postPage-buttons{
-  position:"absolute";
-  top:"80vh";
-  left:"80vw" ;
+postPage-buttons {
+  position: "absolute";
+  top: "80vh";
+  left: "80vw";
   box-shadow: "0 4px 12px rgba(44, 44, 44, 0.5)";
-  border: 2px solid red ;
+  border: 2px solid red;
 }
 
 
-.user-image{
-  
-  background: linear-gradient(to right top, #051937, #004d7a, rgb(0, 135, 147), #00bf72, #a8eb12);  
+.user-image {
+
+  background: linear-gradient(to right top, #051937, #004d7a, rgb(0, 135, 147), #00bf72, #a8eb12);
   height: 50vh;
   box-shadow: 0 30px 50px rgba(0, 135, 147, 0.5);
-  border-bottom: 4px solid rgb(0, 0, 0,0);
-  
+  border-bottom: 4px solid rgb(0, 0, 0, 0);
+
 
 
 
 }
 
-.footer-body{
-  background-color:#e5e5e5 ;
+.footer-body {
+  background-color: #e5e5e5;
   box-shadow: 0 -2px -5px rgba(0, 135, 147, 0.5);
   position: relative;
   top: 5vh;
 
 }
 
+.button-interests {
+  border: 2px solid #dd7973;
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-left: 10px;
+  background-color: #dd7973;
+  color: black;
+  box-shadow: grey 0 2px 4px 0;
+  
 
-.navbar-btns:hover{
-  background-color: rgb(224, 177, 26,0.7);
-  border-radius: 30px;
 }
 
 
@@ -461,7 +468,7 @@ postPage-buttons{
 
   }
 
- 
+
 
 
 
@@ -486,30 +493,32 @@ postPage-buttons{
   .comment-position {
     border: 2px solid red;
     position: "relative";
-    width:90vw;
-    right: 60px ;
+    width: 90vw;
+    right: 60px;
 
-    
+
   }
 
-  .background-one{
-    height:70vh;
+  .background-one {
+    height: 70vh;
   }
-  .background-two{
-    height:70vh;
+
+  .background-two {
+    height: 70vh;
   }
+
   .posts-main {
     width: 80vw;
     position: relative;
     bottom: 150px;
 
   }
-  
-  .user-image{
+
+  .user-image {
     height: 20vh;
   }
-  
-  .about-img{
+
+  .about-img {
     position: absolute;
     top: 175px;
     width: 50vw;

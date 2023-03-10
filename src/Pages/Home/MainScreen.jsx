@@ -9,6 +9,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { addDoc, collection } from "firebase/firestore";
 import Intersets from "./Intersets";
 
+import {motion} from "framer-motion"
+import google from "../../images/Google.png"
 
 const MainScreen = () => {
   const [user] = useAuthState(auth);
@@ -90,10 +92,15 @@ const MainScreen = () => {
       >
         {!user ? (
           <li className=" " style={{ padding: "8px", margin: "5px" }}>
-            Sign In with -
-            <button onClick={signInwithGoogle} style={{ all: "unset" }}>
-              <i className="fa-brands fa-google"></i>{" "}
-            </button>
+            Sign in with - 
+            <motion.button 
+            whileHover={{ scale: [null, 1.5, 1.4] }}
+            transition={{ duration: 0.3 }}
+            
+            onClick={signInwithGoogle} style={{ all: "unset" }}>
+              {/* <i className="fa-brands fa-google"></i> */}
+              <img src={google} alt="google" style={{width:"40px", marginLeft:"10px"}} />
+            </motion.button>
           </li>
         ) : (
           <div className=" d-flex justify-content-center flex-column ">
