@@ -85,7 +85,7 @@ const CreateForm = () => {
         username: user?.displayName,
         blog: filter.clean(content),
         background: res.data.urls.regular,
-        tags :tagsArray,
+        tags: tagsArray,
       });
 
     });
@@ -100,180 +100,188 @@ const CreateForm = () => {
   // addding background image  to the posts -
 
   return (
-    <div className="container  form-head" style={{marginBottom:"300px", padding:"10px"}}>
-      <div className="display-4 text-center p-2    ">
-        Create a Post
-        <hr className="hr hr-blurry  mx-5  " />
-      </div>
-
-
-      <form className="contianer mx-5  m-4" onSubmit={handleSubmit(onCreatePost)}>
-        <div className="mb-3 ">
-          <label className="form-label">Title</label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            placeholder="Enter the post title here "
-            {...register("title")}
-          />
+    <div className="d-flex justify-content-center my-4">
+      <div className="  form-head" style={{ marginBottom: "100px", paddingBottom: "8px" }}>
+        <div className="display-4 text-center p-2    ">
+          Create a Post
+          <hr className="hr hr-blurry  mx-5  " />
         </div>
-        <div className="mb-3">
-          <label className="form-label">Description</label>
-          <input
-            type="text"
-            className="form-control"
-            id="description"
-            placeholder="Enter the description post here"
-            rows="3"
-            {...register("description")}
-          />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Blog</label>
 
-          <JoditEditor
-            ref={editor}
-            value={content}
-            config={config}
-            id="blog"
-            name="bacd"
-            onChange={(newContent) => {
-              setContent(newContent);
-            }}
 
-          />
-        </div>
-        <div className="">
+        <form className=" mx-5  m-4" onSubmit={handleSubmit(onCreatePost)} >
+          <div className="mb-3 ">
+            <label className="form-label">Title</label>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              placeholder="Enter the post title here "
+              {...register("title")}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Description</label>
+            <input
+              type="text"
+              className="form-control"
+              id="description"
+              placeholder="Enter the description post here"
+              rows="3"
+              {...register("description")}
+            />
+          </div>
+          <div className="mb-3">
+            <label className="form-label">Blog</label>
 
-          <div >
-            <div className="">
-              <div className="">
-                <div className="">
-                  
-                  <h4 className="">Select Tags</h4>
-                </div>
-                <div >
-                  <div  >
-                    <div
-                      className="  "
-                      role="group"
-                      aria-label="Basic example" style={{
-                        flexWrap:"wrap"
-                      }}
-                    >
-                      <button
-                        type="button"
-                        value="Movies"
-                        className="btn btn-secondary"
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        Movies
-                      </button>
-                      <button
-                        type="button"
-                        value="LifeStyle"
-                        className="btn btn-secondary"
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        LifeStyle
-                      </button>
-                      <button
-                        type="button"
-                        value="Music"
-                        className="btn btn-secondary"
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        Music
-                      </button>
+            <JoditEditor
+              ref={editor}
+              value={content}
+              config={config}
+              id="blog"
+              name="bacd"
+              onChange={(newContent) => {
+                setContent(newContent);
+              }}
 
-                      <button
-                        type="button"
-                        value="Sports"
-                        className="btn btn-secondary"
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        Sports
-                      </button>
-                      <button
-                        type="button"
-                        value="News"
-                        className="btn btn-secondary "
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        News
-                      </button>
+            />
+          </div>
+          <div className=" form-tag-wrapper ">
 
-                      <button
-                        type="button"
-                        value="Others"
-                        className="btn btn-secondary "
-                        onClick={tagSelection}
-                        style={{margin:"5px"}}
-                      >
-                        Others
-                      </button>
 
-                    </div>
 
-                    <div className="my-1">
-                      <hr />
-                      <div className="">
-                        {tagsArray.map((data) => (
-                          <button
-                            type="button"
-                            key={data}
-                            value={data}
-                            className="btn btn-secondary "
-                            onClick={tagSelection}
-                            style={{margin:"5px"}}
-                          >
-                            {data}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
+            <div className="mx-1 my-2">
 
-                  
+              <h4 className=" ">Select Tags</h4>
+            </div>
+            <div >
+              <div >
+                <div
+
+                  role="group"
+                  aria-label="Basic example" style={{
+                    flexWrap: "wrap"
+                  }}
+                >
                   <button
                     type="button"
-                    className="btn btn-danger"
-                    data-bs-dismiss="modal"
-                    onClick={()=> setTagsArray(["Others"])}
+                    value="Movies"
+                    className="btn btn-secondary 
+                        form-tag-buttons"
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
                   >
-                    Clear
+                    Movies
                   </button>
+                  <button
+                    type="button"
+                    value="LifeStyle"
+                    className="btn btn-secondary
+                        form-tag-buttons"
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
+                  >
+                    LifeStyle
+                  </button>
+                  <button
+                    type="button"
+                    value="Music"
+                    className="btn btn-secondary
+                        form-tag-buttons"
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
+                  >
+                    Music
+                  </button>
+
+                  <button
+                    type="button"
+                    value="Sports"
+                    className="btn btn-secondary
+                        form-tag-buttons"
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
+                  >
+                    Sports
+                  </button>
+                  <button
+                    type="button"
+                    value="News"
+                    className="btn btn-secondary "
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
+                  >
+                    News
+                  </button>
+
+                  <button
+                    type="button"
+                    value="Others"
+                    className="btn btn-secondary 
+                        form-tag-buttons"
+                    onClick={tagSelection}
+                    style={{ margin: "5px" }}
+                  >
+                    Others
+                  </button>
+
+                </div>
+
+                <div className="my-1">
+                  <hr />
+                  <div className="">
+                    {tagsArray.map((data) => (
+                      <button
+                        type="button"
+                        key={data}
+                        value={data}
+                        className="btn btn-secondary
+                            form-tag-buttons "
+                        onClick={tagSelection}
+                        style={{ margin: "5px" }}
+                      >
+                        {data}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="modal-footer mx-1 my-1">
+
+
+              <button
+                type="button"
+                className="btn btn-danger
+                    form-tag-buttons"
+                data-bs-dismiss="modal"
+                onClick={() => setTagsArray(["Others"])}
+              >
+                Clear
+              </button>
+            </div>
+
+
+
+
           </div>
 
-        </div>
 
+          <div>
 
-        <div>
+            <p>
+              {errors.title?.message} {errors.description?.message}
+            </p>
+          </div>
+          <div className="mb-3   ">
+            <input type="submit" className=" form-submit-btn d-flex justify-content-center " value={"Post" || ""} />
+          </div>
 
-          <p>
-            {errors.title?.message} {errors.description?.message}
-          </p>
-        </div>
-        <div className="mb-3  d-flex justify-content-center">
-          <input type="submit" className="btn btn-primary" value={"Post" || ""} />
-        </div>
+          {/* {console.log(window.innerWidth)}  */}
+        </form>
 
-       
-      </form>
-  
+      </div>
+      
     </div>
-
   );
 };
 

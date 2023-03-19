@@ -55,6 +55,8 @@ const ProfilePage = (props) => {
     <>
       <div className="user-image "></div>
 
+
+
 <div className="container">
     {/* {console.log(userInfo)} */}
   
@@ -74,6 +76,9 @@ const ProfilePage = (props) => {
       <div className="user-post ">
         <UserPosts post={post} />
       </div>
+      
+
+
       
     </div>
     </>

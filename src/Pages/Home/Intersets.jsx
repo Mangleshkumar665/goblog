@@ -90,14 +90,16 @@ const Intersets = () => {
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <button
+                    <motion.button
                       type="button"
                       className=""
                       data-bs-dismiss="modal"
                       style={{ all: "unset" }}
+                      whileHover={{ scale: [null, 1.5, 1.4] }}
+                      transition={{ duration: 0.3 }}
                     >
                       <i className="fa-sharp fa-solid fa-xmark"></i>
-                    </button>
+                    </motion.button>
 
                     <h4 className="modal-title">Your Interests</h4>
                   </div>
@@ -107,70 +109,82 @@ const Intersets = () => {
                         className=""
                         role="group"
                         aria-label="Basic example"
-                        style={{flexWrap:"warp"}}
+                        style={{ flexWrap: "warp" }}
                       >
-                        <button
+                        <motion.button
+                          whileHover={{ scale: [null, 1.5, 1.4] }}
+                          transition={{ duration: 0.3 }}
                           type="button"
                           value="Movies"
                           className="btn btn-secondary"
                           onClick={interestSelecttion}
-                          style={{margin:"2px"}}
+                          style={{ margin: "2px" }}
                         >
                           Movies
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: [null, 1.5, 1.4] }}
+                          transition={{ duration: 0.3 }}
                           type="button"
                           value="LifeStyle"
                           className="btn btn-secondary"
                           onClick={interestSelecttion}
-                          style={{margin:"2px"}}
+                          style={{ margin: "2px" }}
                         >
                           LifeStyle
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: [null, 1.5, 1.4] }}
+                          transition={{ duration: 0.3 }}
                           type="button"
                           value="Music"
                           className="btn btn-secondary"
                           onClick={interestSelecttion}
-                          style={{margin:"2px"}}
+                          style={{ margin: "2px" }}
                         >
                           Music
-                        </button>
+                        </motion.button>
 
-                        <button
+                        <motion.button
+                          whileHover={{ scale: [null, 1.5, 1.4] }}
+                          transition={{ duration: 0.3 }}
                           type="button"
                           value="Sports"
                           className="btn btn-secondary"
                           onClick={interestSelecttion}
-                          style={{margin:"2px"}}
+                          style={{ margin: "2px" }}
                         >
                           Sports
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          whileHover={{ scale: [null, 1.5, 1.4] }}
+                          transition={{ duration: 0.3 }}
                           type="button"
                           value="News"
                           className="btn btn-secondary "
                           onClick={interestSelecttion}
-                          style={{margin:"2px"}}
+                          style={{ margin: "2px" }}
                         >
                           News
-                        </button>
+                        </motion.button>
                       </div>
 
                       <div className="">
                         <hr />
-                        <div style={{flexWrap:"wrap"}}>
+                        <div style={{ flexWrap: "wrap" }}>
                           {interestsArray.map((data) => (
-                            <button
+                            <motion.button
+                              whileHover={{ scale: [null, 1.5, 1.4] }}
+                              transition={{ duration: 0.3 }}
                               type="button"
                               key={data}
                               value={data}
                               className="btn btn-secondary "
                               onClick={interestSelecttion}
-                              style={{margin:"2px"}}
+                              style={{ margin: "2px" }}
                             >
                               {data}
-                            </button>
+                            </motion.button>
                           ))}
                         </div>
                       </div>
@@ -178,17 +192,21 @@ const Intersets = () => {
                   </div>
                   <div className="modal-footer">
 
-                    <button type="button" className="btn btn-default" onClick={AddInterests}>
+                    <motion.button type="button" className="btn btn-default" onClick={AddInterests}
+                      whileHover={{ scale: [null, 1.5, 1.4] }}
+                      transition={{ duration: 0.3 }}>
                       Add
-                    </button>
+                    </motion.button>
 
-                    <button
+                    <motion.button
                       type="button"
                       className="btn btn-default"
                       data-bs-dismiss="modal"
+                      whileHover={{ scale: [null, 1.5, 1.4] }}
+                      transition={{ duration: 0.3 }}
                     >
                       Close
-                    </button>
+                    </motion.button>
                   </div>
                 </div>
               </div>

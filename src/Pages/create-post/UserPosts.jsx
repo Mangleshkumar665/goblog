@@ -14,13 +14,13 @@ const UserPosts = (props) => {
       {console.log(props.post)}
       {window.location.pathname.split('/')[2] === user?.uid ? (props.post.length === 0) ?
 
-        <div className=" text-center p-2 " style={{ fontSize: "25px" }}>
+        <div className=" text-center p-2   " style={{ fontSize: "25px" }}>
 
           <hr className="hr hr-blurry  mx-5  " />
 
 
-          <div className="alert alert-warning alert-dismissible fade show" role="alert">
-            <div className="d-flex f-column justify-content-between">
+          <div className="alert alert-warning alert-dismissible fade show post-alert" role="alert">
+            <div className="d-flex f-column justify-content-between ">
               You haven't posted anything  yet. Create one below.
 
               <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close" style={{ all: "unset" }}>

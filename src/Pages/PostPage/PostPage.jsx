@@ -57,27 +57,27 @@ const PostPage = (props) => {
         <div>
           <img
             src={currentPost[0]?.background}
-            className="img-fluid  post-background opacity-75"
+            className="img-fluid  post-background "
             alt="backgroundimage"
           />
         </div>
         <div className=" d-flex justify-content-center align-items-center col  ">
-          <div className="  wrapper   text-center  post-heading row d-flex justify-content-center align-items-center flex-column  ">
+          <div className="  wrapper   text-center row d-flex justify-content-center align-items-center flex-column  ">
             <div
-              className="  text-hello display-1 post-font fit "
-              style={{ fontSize: "6vw" }}
+              className="  text-hello  post-font fit "
+              style={{ fontSize: "5vw" }}
             >
               {currentPost[0]?.title}
             </div>
 
             <div
-              className="  text-caption my-4  post-font fit"
-              style={{ fontSize: "2vw" }}
+              className="  text-caption my-4  post-font fit "
+              
             >
               {currentPost[0]?.description}
             </div>
 
-            <div className=" display-6  my-4 post-font fit">
+            <div className="   my-4 post-font fit">
               Posted By :{currentPost[0]?.username}
             </div>
             
@@ -86,9 +86,7 @@ const PostPage = (props) => {
           <div className=" postPage-buttons d-flex justiy-content-center flex-row " >
            { currentPost[0]?.userId === user?.uid ?
            <div>
-            {/* <button className="btn btn-dark mx-1" >
-              Edit Post 
-            </button> */}
+            
 
             <button className="btn btn-dark" style={{ margin:"5px"}} onClick={deletePost}>
               Delete Post

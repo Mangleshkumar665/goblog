@@ -14,7 +14,7 @@ import { auth, db } from "../../Config/firebase";
 import Comments from "./Comments";
 import { Link } from "react-router-dom";
 import liked from "../../images/liked.png"
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 
 export const PostProvider = createContext();
 
@@ -90,14 +90,14 @@ const Post = (props) => {
             {post.username}
           </Link>
         </h3>
-        <motion.div className="post-imgwrapper"whileHover={{ scale: [null, 1.1, 1.1] }}
-              transition={{ duration: 0.3 }}>
+        <motion.div className="post-imgwrapper" whileHover={{ scale: [null, 1.1, 1.1] }}
+          transition={{ duration: 0.3 }}>
           <img src={post.background} className=" post-img" alt="..." />
         </motion.div>
         <div className="card-body post-details">
-          <motion.h5 className=" post-title"whileHover={{ scale: [null, 1.01, 1.1] }}
-              transition={{ duration: 0.3 }} >
-            <Link to={`/${post.id}`} style={{all:"unset",color:"grey"}}>{post.title}</Link>
+          <motion.h5 className=" post-title" whileHover={{ scale: [null, 1.01, 1.1] }}
+            transition={{ duration: 0.3 }} >
+            <Link to={`/${post.id}`} style={{ all: "unset", color: "grey" }}>{post.title}</Link>
           </motion.h5>
 
           <p className="post-desc">{post.description}</p>
@@ -107,16 +107,16 @@ const Post = (props) => {
             <div className="col-2">
               {hasCurrentUserLiked ? (
                 <motion.button onClick={removeLike}
-                whileHover={{ scale: [null, 1.5, 1.4] }}
-              transition={{ duration: 0.3 }}
+                  whileHover={{ scale: [null, 1.5, 1.4] }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <img src={liked} alt="liked" style={{width:"27px"}}/>
+                  <img src={liked} alt="liked" style={{ width: "27px" }} />
                 </motion.button>
               ) : (
                 <motion.button onClick={addLike} className="post-Btns"
-                whileHover={{ scale: [null, 1.5, 1.4] }}
-              transition={{ duration: 0.3 }}>
-                  
+                  whileHover={{ scale: [null, 1.5, 1.4] }}
+                  transition={{ duration: 0.3 }}>
+
                   <i className="fa-regular fa-heart fa-xl"></i>
                 </motion.button>
               )}
@@ -133,12 +133,12 @@ const Post = (props) => {
           </div>
         </div>
 
-        <div className="post-stats d-flex" style={{fontSize:"1.5rem"}}>
+        <div className="post-stats d-flex" style={{ fontSize: "1.5rem" }}>
           <div className="likes-stats mx-3">{likes.length} Likes</div>
-          
+
         </div>
       </div>
-      
+
     </>
   );
 };
