@@ -13,7 +13,7 @@ import { useMemo } from "react";
 import axios from "axios";
 
 import Filter from "bad-words";
-
+import {motion} from "framer-motion"
 
 const CreateForm = () => {
 
@@ -102,6 +102,11 @@ const CreateForm = () => {
   return (
     <div className="d-flex justify-content-center my-4">
       <div className="  form-head" style={{ marginBottom: "100px", paddingBottom: "8px" }}>
+
+      
+
+
+
         <div className="display-4 text-center p-2    ">
           Create a Post
           <hr className="hr hr-blurry  mx-5  " />
@@ -162,7 +167,10 @@ const CreateForm = () => {
                     flexWrap: "wrap"
                   }}
                 >
-                  <button
+                  <motion.button
+                  whileHover={{ scale: [null, 1, 1.05] }}
+                  transition={{ duration: 0.3 }}
+                  
                     type="button"
                     value="Movies"
                     className="btn btn-secondary 
@@ -171,8 +179,10 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     Movies
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     value="LifeStyle"
                     className="btn btn-secondary
@@ -181,8 +191,10 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     LifeStyle
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     value="Music"
                     className="btn btn-secondary
@@ -191,9 +203,11 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     Music
-                  </button>
+                  </motion.button>
 
-                  <button
+                  <motion.button
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     value="Sports"
                     className="btn btn-secondary
@@ -202,8 +216,10 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     Sports
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     value="News"
                     className="btn btn-secondary "
@@ -211,9 +227,11 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     News
-                  </button>
+                  </motion.button>
 
-                  <button
+                  <motion.button
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
                     type="button"
                     value="Others"
                     className="btn btn-secondary 
@@ -222,7 +240,7 @@ const CreateForm = () => {
                     style={{ margin: "5px" }}
                   >
                     Others
-                  </button>
+                  </motion.button>
 
                 </div>
 
@@ -230,7 +248,9 @@ const CreateForm = () => {
                   <hr />
                   <div className="">
                     {tagsArray.map((data) => (
-                      <button
+                      <motion.button
+                      whileHover={{ scale: [null, 1, 1.05] }}
+                  transition={{ duration: 0.3 }}
                         type="button"
                         key={data}
                         value={data}
@@ -240,7 +260,7 @@ const CreateForm = () => {
                         style={{ margin: "5px" }}
                       >
                         {data}
-                      </button>
+                      </motion.button>
                     ))}
                   </div>
                 </div>
@@ -249,7 +269,9 @@ const CreateForm = () => {
             <div className="modal-footer mx-1 my-1">
 
 
-              <button
+              <motion.button
+              whileHover={{ scale: [null, 1, 1.05] }}
+              transition={{ duration: 0.3 }}
                 type="button"
                 className="btn btn-danger
                     form-tag-buttons"
@@ -257,7 +279,7 @@ const CreateForm = () => {
                 onClick={() => setTagsArray(["Others"])}
               >
                 Clear
-              </button>
+              </motion.button>
             </div>
 
 
@@ -273,7 +295,9 @@ const CreateForm = () => {
             </p>
           </div>
           <div className="mb-3   ">
-            <input type="submit" className=" form-submit-btn d-flex justify-content-center " value={"Post" || ""} />
+            <motion.input whileHover={{ scale: [null, 1, 1.05] }}
+                  transition={{ duration: 0.1 }}
+            type="submit" className=" form-submit-btn d-flex justify-content-center " value={"Post" || ""} />
           </div>
 
           {/* {console.log(window.innerWidth)}  */}
