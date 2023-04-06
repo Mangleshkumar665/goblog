@@ -1,5 +1,4 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import Footer from "../../Components/Footer";
 import { auth } from "../../Config/firebase";
 import Post from "../Home/Post";
 
@@ -10,11 +9,11 @@ const UserPosts = (props) => {
 
 
   return (
-    <div className="" style={{ position: "relative", top: "150px" }}>
-      {console.log(props.post)}
+    <div className="" >
+     
       {window.location.pathname.split('/')[2] === user?.uid ? (props.post.length === 0) ?
 
-        <div className=" text-center p-2   " style={{ fontSize: "25px" }}>
+        <div className=" text-center p-2    " style={{ fontSize: "25px" }}>
 
           <hr className="hr hr-blurry  mx-5  " />
 
@@ -24,7 +23,7 @@ const UserPosts = (props) => {
               You haven't posted anything  yet. Create one below.
 
               <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close" style={{ all: "unset" }}>
-                <i class="fa fa-times" aria-hidden="true"></i>
+                <i className="fa fa-times" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -58,7 +57,7 @@ const UserPosts = (props) => {
           <li className="" key={post.id}><Post post={post} /></li>
 
         ))}
-        {/* {console.log(window.location.pathname.slice(6)) } */}
+        
       </div>
       
     </div>

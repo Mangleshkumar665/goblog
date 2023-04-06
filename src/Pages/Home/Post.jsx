@@ -20,7 +20,7 @@ export const PostProvider = createContext();
 
 const Post = (props) => {
   const { post } = props;
-  const [totalComments, setTotalComments] = useState(0);
+  
 
   const [user] = useAuthState(auth);
   const [likes, setLikes] = useState([]);
@@ -83,8 +83,10 @@ const Post = (props) => {
   }, []);
 
   return (
+
     <>
-      <div className="card posts-main  ">
+     
+      <div className="card posts-main   ">
         <h3 className=" post-profileheader d-flex align-items-center">
           <Link className="navbar-brand" to={`/user/${post.userId}`}>
             {post.username}
@@ -99,6 +101,19 @@ const Post = (props) => {
             transition={{ duration: 0.3 }} >
             <Link to={`/${post.id}`} style={{ all: "unset", color: "grey" }}>{post.title}</Link>
           </motion.h5>
+
+          <div className="  ">
+            <ul className=" " >
+
+              {post?.tags.map((tag) =>
+
+                <li className="btn " key={tag} style={{backgroundColor:"grey", fontSize:"18px" , color:"white", marginRight:"14px", marginTop:"5px" }}>{tag}</li>
+                
+
+
+              )}
+            </ul>
+          </div>
 
           <p className="post-desc">{post.description}</p>
 
@@ -126,8 +141,7 @@ const Post = (props) => {
             <motion.div className="col-5  "
             >
               <Comments
-                post={post}
-                setTotalComments={() => setTotalComments()}
+                post={post} 
               />
             </motion.div>
           </div>

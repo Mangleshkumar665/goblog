@@ -32,7 +32,7 @@ const Navbar = () => {
               </Link>
             </motion.div>
           </div> : <div className="d-flex align-items-center justify-content-center" style={{ width: "56vw", position: "relative", left: "20vw" }}>
-            <motion.div className="temp"
+            <motion.div className=""
               whileHover={{ scale: [null, 1.5, 1.4] }}
               transition={{ duration: 0.3 }}
 

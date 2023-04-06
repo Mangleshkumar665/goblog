@@ -27,7 +27,6 @@ const Comments = (props) => {
   const commentsRef = collection(db, "comments");
   const [user] = useAuthState(auth);
 
-  const [commentId, setCommentId] = useState("")
 
   const onCreateComment = async (data) => {
     try {
@@ -83,8 +82,7 @@ const Comments = (props) => {
         }))
       );
         
-      // console.log(data.docs.map((doc) => ({ userId: doc.data().userId,comment : doc.data().comment })))
-      props.setTotalComments(() => commentsArray.length);
+     
     } catch (err) {
       console.log(err);
     }
@@ -100,7 +98,7 @@ const Comments = (props) => {
   // delete comment -b---
   
   const removeComment = async (element) => {
-   console.log(element)
+
     let commentId = await element.commentId
     try {
       const commentToDeleteQuery = query(
@@ -193,8 +191,7 @@ const Comments = (props) => {
                           </div>
                           <div className=" d-flex flex-row justify-content-between" style={{fontSize:"1.5rem"}}>
                             <div className=" mx-2 my-2"  >{element.comment}</div>
-                            {console.log(user?.uid,"chk")}
-                            
+                          
                             { (user?.uid === element.userId || props.post.userId === user?.uid )? 
                               <div className="my-2"> <button onClick={()=>removeComment(element)}><i className="fa-sharp fa-solid fa-xmark"></i></button>
                             </div> :""}

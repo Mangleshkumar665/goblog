@@ -56,25 +56,6 @@ const Intersets = () => {
         user ?
 
           <div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <motion.button
               whileHover={{ scale: [null, 1, 1.05] }}
               transition={{ duration: 0.3 }}

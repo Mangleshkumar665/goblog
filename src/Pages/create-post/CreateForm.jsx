@@ -13,7 +13,7 @@ import { useMemo } from "react";
 import axios from "axios";
 
 import Filter from "bad-words";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
 
 const CreateForm = () => {
 
@@ -66,6 +66,7 @@ const CreateForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+  
   const postsRef = collection(db, "posts");
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const CreateForm = () => {
     const clientId = "TPgpKauoGGr_sqhV82hcPHQXRsVNNLl79RvFSgHY6N4";
     const endpoint = `https://api.unsplash.com/photos/random?client_id=${clientId}&query=nature&orientation=landscape`;
 
-    await axios.get(endpoint).then((res) => {
+    axios.get(endpoint).then((res) => {
 
 
 
@@ -89,11 +90,20 @@ const CreateForm = () => {
       });
 
     });
-    setTimeout(() => {
-      navigate("/");
-      navigate(0)
-      alert("posted successfully")
-    }, 2000);
+    
+    alert("posted !!");
+    navigate("/");
+    
+    // currently disbanding it 
+    // navigate(0);
+
+
+
+
+    
+
+    
+    
 
   };
 
@@ -103,7 +113,7 @@ const CreateForm = () => {
     <div className="d-flex justify-content-center my-4">
       <div className="  form-head" style={{ marginBottom: "100px", paddingBottom: "8px" }}>
 
-      
+
 
 
 
@@ -112,23 +122,23 @@ const CreateForm = () => {
           <hr className="hr hr-blurry  mx-5  " />
         </div>
 
-
+        {console.log(errors)}
         <form className=" mx-5  m-4" onSubmit={handleSubmit(onCreatePost)} >
           <div className="mb-3 ">
-            <label className="form-label">Title</label>
+            <label className="form-label">Title {errors.title?.message ? <div className="error-text"> {errors.title?.message + "!!!"}  </div> : ""}</label>
             <input
               type="text"
-              className="form-control"
+              className={errors.title?.message ? "form-control error-box" : "form-control"}
               id="title"
               placeholder="Enter the post title here "
               {...register("title")}
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Description</label>
+            <label className="form-label">Description {errors.description?.message ? <div className="error-text"> {errors.description?.message + "!!!"}  </div> : ""}</label>
             <input
               type="text"
-              className="form-control"
+              className={errors.description?.message ? "form-control error-box" : "form-control"}
               id="description"
               placeholder="Enter the description post here"
               rows="3"
@@ -136,19 +146,22 @@ const CreateForm = () => {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Blog</label>
+            <label className="form-label">Blog </label>
 
-            <JoditEditor
-              ref={editor}
-              value={content}
-              config={config}
-              id="blog"
-              name="bacd"
-              onChange={(newContent) => {
-                setContent(newContent);
-              }}
+            <div >
+              <JoditEditor
+                ref={editor}
 
-            />
+                value={content}
+                config={config}
+                id="blog"
+                name="bacd"
+                onChange={(newContent) => {
+                  setContent(newContent);
+                }}
+
+              />
+            </div>
           </div>
           <div className=" form-tag-wrapper ">
 
@@ -168,9 +181,9 @@ const CreateForm = () => {
                   }}
                 >
                   <motion.button
-                  whileHover={{ scale: [null, 1, 1.05] }}
-                  transition={{ duration: 0.3 }}
-                  
+                    whileHover={{ scale: [null, 1, 1.05] }}
+                    transition={{ duration: 0.3 }}
+
                     type="button"
                     value="Movies"
                     className="btn btn-secondary 
@@ -249,8 +262,8 @@ const CreateForm = () => {
                   <div className="">
                     {tagsArray.map((data) => (
                       <motion.button
-                      whileHover={{ scale: [null, 1, 1.05] }}
-                  transition={{ duration: 0.3 }}
+                        whileHover={{ scale: [null, 1, 1.05] }}
+                        transition={{ duration: 0.3 }}
                         type="button"
                         key={data}
                         value={data}
@@ -270,8 +283,8 @@ const CreateForm = () => {
 
 
               <motion.button
-              whileHover={{ scale: [null, 1, 1.05] }}
-              transition={{ duration: 0.3 }}
+                whileHover={{ scale: [null, 1, 1.05] }}
+                transition={{ duration: 0.3 }}
                 type="button"
                 className="btn btn-danger
                     form-tag-buttons"
@@ -290,21 +303,18 @@ const CreateForm = () => {
 
           <div>
 
-            <p>
-              {errors.title?.message} {errors.description?.message}
-            </p>
           </div>
           <div className="mb-3   ">
             <motion.input whileHover={{ scale: [null, 1, 1.05] }}
-                  transition={{ duration: 0.1 }}
-            type="submit" className=" form-submit-btn d-flex justify-content-center " value={"Post" || ""} />
+              transition={{ duration: 0.1 }}
+              type="submit" className=" form-submit-btn d-flex justify-content-center " value={"Post" || ""} />
           </div>
 
-          {/* {console.log(window.innerWidth)}  */}
+          
         </form>
 
       </div>
-      
+
     </div>
   );
 };

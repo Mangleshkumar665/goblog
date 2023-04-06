@@ -11,13 +11,7 @@ const CreatePost = (props) => {
   return (
     <>
       <ProfilePage />
-      { user?.uid === window.location.pathname.slice(6)?
       
-        
-        
-        <CreateForm /> 
-        :  
-        "" }
       
     </>
   );

@@ -136,7 +136,15 @@
   right: "80px";
 }
 
-
+.background-one-user-null{
+  clip-path: polygon(0 0, 60% 0, 46% 100%, 0% 100%);
+    height: 100vh;
+    
+  }
+  .background-two-user-null{
+    height: 100vh;
+    clip-path: polygon(100% 0, 60% 0, 46% 100%, 100% 100%);
+  }
 
 
 
@@ -183,6 +191,8 @@ li {
   align-items: center;
   justify-content: center;
 
+  
+
 }
 
 .about-img {
@@ -190,9 +200,9 @@ li {
   top: 45vh;
   width: 20vw;
   height: 30vh;
-  border-radius: 5px;
-  box-shadow: 1px 3px 12px rgba(2, 2, 2, 0.18);
-  border: 3px solid #015158;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  
 }
 
 .form-head {
@@ -241,11 +251,10 @@ postPage-buttons {
 
 .user-image {
 
-  background: linear-gradient(to right top, #051937, #004d7a, rgb(0, 135, 147), #00bf72, #a8eb12);
+  background-color:#519E8A;
   height: 50vh;
-  box-shadow: 0 30px 50px rgba(0, 135, 147, 0.5);
-  border-bottom: 4px solid rgb(0, 0, 0, 0);
-
+  /* box-shadow: 0 30px 50px rgba(0, 135, 147, 0.5); */
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
 
 
@@ -293,7 +302,44 @@ postPage-buttons {
 }
 
 
+.error-box{
+  border: 2px solid red ;
+  color: red;
+}
+
+.error-text{
+  
+  color: red;
+}
+.profile-img-wrapper{
+  /* border: 2px solid red ; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: -100px;
+  
+
+}
+
+.profile-img{
+  width: 200px;
+  height: 200px;
+  /* border: 2px solid red ; */
+  margin-bottom: 10px;
+
+}
+
 @media only screen and (max-width: 600px) {
+  .profile-img-wrapper{
+    top: -70px;
+  }
+
+  .profile-img{
+    width: 150px;
+    height: 150px;
+  }
 
   .about-imgLayer {
     display: flex;
@@ -301,16 +347,14 @@ postPage-buttons {
     padding: 30px;
     align-items: center;
     justify-content: center;
+    border: 2px solid red ;
   }
 
   .about-img {
-    border-radius: 25%;
+    border-radius: 3px;
     position: absolute;
     top: 370px;
     height: 210px;
-    box-shadow: 0 15px 25px rgba(92, 91, 91, 0.5);
-
-
   }
 
   .posts-main {
@@ -322,14 +366,20 @@ postPage-buttons {
     position: "relative";
     width: 90vw;
     right: 60px;
-
-
   }
 
   .background-one {
     height: 70vh;
   }
 
+  .background-one-user-null{
+    height: 100vh;
+    
+  }
+  .background-two-user-null{
+    height: 100vh;
+
+  }
   .background-two {
     height: 70vh;
   }
