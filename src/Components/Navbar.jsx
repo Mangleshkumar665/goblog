@@ -12,6 +12,7 @@ const Navbar = () => {
     Navigate("/")
     Navigate(0)
 
+
   };
   const [user] = useAuthState(auth);
   return (

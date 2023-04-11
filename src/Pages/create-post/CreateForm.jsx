@@ -110,6 +110,8 @@ const CreateForm = () => {
   // addding background image  to the posts -
 
   return (
+    <>
+    { user?
     <div className="d-flex justify-content-center my-4">
       <div className="  form-head" style={{ marginBottom: "100px", paddingBottom: "8px" }}>
 
@@ -315,7 +317,10 @@ const CreateForm = () => {
 
       </div>
 
-    </div>
+    </div> : "404 Page Not Found "
+    }
+    </>
+
   );
 };
 

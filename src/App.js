@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./Pages/Login";
+
 import Navbar from "./Components/Navbar";
-import CreatePost from "./Pages/create-post/CreatePost";
+
 import Home from "./Pages/Home/Home";
 import { db } from "./Config/firebase";
 import { useEffect } from "react";
@@ -15,6 +15,8 @@ import CreateForm from "./Pages/create-post/CreateForm";
 
 import { useDispatch } from "react-redux";
 import { select } from "./store/postSlice";
+import Signin from "./Components/Signin";
+import ProfilePage from "./Pages/create-post/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,9 +41,9 @@ function App() {
         <Router>
           <Navbar />
           <Routes>
-            <Route path="/Signin" element={<Login />}></Route>
+            <Route path="/Signin" element={<Signin />}></Route>
             <Route path="/" element={<Home  />}></Route>
-            <Route path={"/user/:id"} element={<CreatePost />}></Route>
+            <Route path={"/user/:id"} element={<ProfilePage />}></Route>
 
             <Route
               path={"/:id"}

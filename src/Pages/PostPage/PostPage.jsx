@@ -56,7 +56,8 @@ const PostPage = (props) => {
   }, [post]);
 
   return (
-
+<>
+{ user? 
     <div>
       <div className="" style={{ boxShadow: "0 15px 25px rgba(92, 91, 91, 0.5)" }}>
         <div>
@@ -110,7 +111,11 @@ const PostPage = (props) => {
         </div>
       </div>
       <Footer />
-    </div>
+    </div> : "404 page not found "
+
+}
+    </>
+
   );
 };
 

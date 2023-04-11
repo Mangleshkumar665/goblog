@@ -2,14 +2,14 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 
-import { db } from "../../Config/firebase";
+import { auth, db } from "../../Config/firebase";
 import UserPosts from "./UserPosts";
-import CreatePost from "./CreatePost";
 import CreateForm from "./CreateForm";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const ProfilePage = (props) => {
 
-
+  const [user] = useAuthState(auth);
 
   const [post, setPost] = useState([]);
 
@@ -36,6 +36,19 @@ const ProfilePage = (props) => {
   };
 
 
+  let  path = window.location.pathname.split("/")
+
+  let currentPath = path[path.length-1]
+ 
+  console.log(user.uid )
+
+
+
+
+
+
+
+
   useEffect(() => {
     getPosts();
     getUserInfo();
@@ -49,7 +62,7 @@ const ProfilePage = (props) => {
 
   return (
     <>
-      <div className="user-image "></div>
+      <div className="user-image temp "></div>
 
 
 
@@ -70,10 +83,12 @@ const ProfilePage = (props) => {
         <div className="user-post ">
           <UserPosts post={post} />
         </div>
-
-
-        <CreateForm />
-
+          
+        
+        { 
+      user?.uid=== currentPath?
+        <CreateForm />:""
+}
 
       </div>
       
